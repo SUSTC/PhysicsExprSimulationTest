@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.ustcori.com/2009/10" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ustcori.com/2009/10" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.ustcori.com/2009/10/Imports">
+      <xsd:import schemaLocation="http://physicslab1:8002/BizService.svc?xsd=xsd0" namespace="http://www.ustcori.com/2009/10" />
+      <xsd:import schemaLocation="http://physicslab1:8002/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://physicslab1:8002/BizService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBizService_DoService_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoService" />
+  </wsdl:message>
+  <wsdl:message name="IBizService_DoService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBizService_SyncCMMUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncCMMUser" />
+  </wsdl:message>
+  <wsdl:message name="IBizService_SyncCMMUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncCMMUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBizService">
+    <wsdl:operation name="DoService">
+      <wsdl:input wsaw:Action="http://www.ustcori.com/2009/10/IBizService/DoService" message="tns:IBizService_DoService_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.ustcori.com/2009/10/IBizService/DoServiceResponse" message="tns:IBizService_DoService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncCMMUser">
+      <wsdl:input wsaw:Action="http://www.ustcori.com/2009/10/IBizService/SyncCMMUser" message="tns:IBizService_SyncCMMUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.ustcori.com/2009/10/IBizService/SyncCMMUserResponse" message="tns:IBizService_SyncCMMUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
