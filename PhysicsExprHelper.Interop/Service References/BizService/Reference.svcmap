@@ -21,12 +21,12 @@
     <MetadataSource Address="http://172.18.6.16:8002/BizService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="BizService.xsd" MetadataType="Schema" ID="61e9d204-7ca7-49fc-8691-d8c6a782bfb1" SourceId="1" SourceUrl="http://physicslab1:8002/BizService.svc?xsd=xsd1" />
-    <MetadataFile FileName="BizService.wsdl" MetadataType="Wsdl" ID="bda95b43-371d-44b3-8a8f-ff0cea0ccbb3" SourceId="1" SourceUrl="http://physicslab1:8002/BizService.svc?wsdl" />
-    <MetadataFile FileName="BizService.disco" MetadataType="Disco" ID="9ad92eac-7737-459f-be1b-72925362557d" SourceId="1" SourceUrl="http://physicslab1:8002/BizService.svc?disco" />
-    <MetadataFile FileName="BizService1.xsd" MetadataType="Schema" ID="236db0d5-43f0-4414-a64c-ff8b1ce96c02" SourceId="1" SourceUrl="http://physicslab1:8002/BizService.svc?xsd=xsd0" />
-    <MetadataFile FileName="BizService1.wsdl" MetadataType="Wsdl" ID="222a860c-7640-495d-b145-bbaa351c02bd" SourceId="1" SourceUrl="http://physicslab1:8002/BizService.svc?wsdl=wsdl0" />
-    <MetadataFile FileName="BizService2.xsd" MetadataType="Schema" ID="de2c1bbf-4c72-49c0-ada6-c7a1bc7ec811" SourceId="1" SourceUrl="http://physicslab1:8002/BizService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BizService.xsd" MetadataType="Schema" ID="61e9d204-7ca7-49fc-8691-d8c6a782bfb1" SourceId="1" SourceUrl="http://172.18.6.16:8002/BizService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BizService.wsdl" MetadataType="Wsdl" ID="bda95b43-371d-44b3-8a8f-ff0cea0ccbb3" SourceId="1" SourceUrl="http://172.18.6.16:8002/BizService.svc?wsdl" />
+    <MetadataFile FileName="BizService.disco" MetadataType="Disco" ID="9ad92eac-7737-459f-be1b-72925362557d" SourceId="1" SourceUrl="http://172.18.6.16:8002/BizService.svc?disco" />
+    <MetadataFile FileName="BizService1.xsd" MetadataType="Schema" ID="236db0d5-43f0-4414-a64c-ff8b1ce96c02" SourceId="1" SourceUrl="http://172.18.6.16:8002/BizService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BizService1.wsdl" MetadataType="Wsdl" ID="222a860c-7640-495d-b145-bbaa351c02bd" SourceId="1" SourceUrl="http://172.18.6.16:8002/BizService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="BizService2.xsd" MetadataType="Schema" ID="de2c1bbf-4c72-49c0-ada6-c7a1bc7ec811" SourceId="1" SourceUrl="http://172.18.6.16:8002/BizService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

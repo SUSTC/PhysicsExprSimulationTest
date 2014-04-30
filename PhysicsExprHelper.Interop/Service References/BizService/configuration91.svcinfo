@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IBizService" contract="BizService.IBizService" bindingType="basicHttpBinding" address="http://physicslab1:8002/BizService.svc" bindingConfiguration="BasicHttpBinding_IBizService">
+    <endpoint name="BasicHttpBinding_IBizService" contract="BizService.IBizService" bindingType="basicHttpBinding" address="http://172.18.6.16:8002/BizService.svc" bindingConfiguration="BasicHttpBinding_IBizService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://physicslab1:8002/BizService.svc</serializedValue>
+          <serializedValue>http://172.18.6.16:8002/BizService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
