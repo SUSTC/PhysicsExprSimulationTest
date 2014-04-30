@@ -30,6 +30,10 @@
         {
             this.tbLog = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnGetPaper = new System.Windows.Forms.Button();
+            this.btnGetExamScore = new System.Windows.Forms.Button();
+            this.btnGetPaperContent = new System.Windows.Forms.Button();
+            this.btnGetSubmitted = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbLog
@@ -51,11 +55,55 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnGetPaper
+            // 
+            this.btnGetPaper.Location = new System.Drawing.Point(95, 353);
+            this.btnGetPaper.Name = "btnGetPaper";
+            this.btnGetPaper.Size = new System.Drawing.Size(77, 31);
+            this.btnGetPaper.TabIndex = 2;
+            this.btnGetPaper.Text = "GetPaper";
+            this.btnGetPaper.UseVisualStyleBackColor = true;
+            this.btnGetPaper.Click += new System.EventHandler(this.btnGetPaper_Click);
+            // 
+            // btnGetExamScore
+            // 
+            this.btnGetExamScore.Location = new System.Drawing.Point(179, 353);
+            this.btnGetExamScore.Name = "btnGetExamScore";
+            this.btnGetExamScore.Size = new System.Drawing.Size(89, 31);
+            this.btnGetExamScore.TabIndex = 3;
+            this.btnGetExamScore.Text = "GetExamScore";
+            this.btnGetExamScore.UseVisualStyleBackColor = true;
+            this.btnGetExamScore.Click += new System.EventHandler(this.btnGetExamScore_Click);
+            // 
+            // btnGetPaperContent
+            // 
+            this.btnGetPaperContent.Location = new System.Drawing.Point(274, 353);
+            this.btnGetPaperContent.Name = "btnGetPaperContent";
+            this.btnGetPaperContent.Size = new System.Drawing.Size(105, 31);
+            this.btnGetPaperContent.TabIndex = 4;
+            this.btnGetPaperContent.Text = "GetPaperContent";
+            this.btnGetPaperContent.UseVisualStyleBackColor = true;
+            this.btnGetPaperContent.Click += new System.EventHandler(this.btnGetPaperContent_Click);
+            // 
+            // btnGetSubmitted
+            // 
+            this.btnGetSubmitted.Location = new System.Drawing.Point(385, 353);
+            this.btnGetSubmitted.Name = "btnGetSubmitted";
+            this.btnGetSubmitted.Size = new System.Drawing.Size(105, 31);
+            this.btnGetSubmitted.TabIndex = 5;
+            this.btnGetSubmitted.Text = "GetSubmitted";
+            this.btnGetSubmitted.UseVisualStyleBackColor = true;
+            this.btnGetSubmitted.Click += new System.EventHandler(this.btnGetSubmitted_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 396);
+            this.Controls.Add(this.btnGetSubmitted);
+            this.Controls.Add(this.btnGetPaperContent);
+            this.Controls.Add(this.btnGetExamScore);
+            this.Controls.Add(this.btnGetPaper);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tbLog);
             this.Name = "MainForm";
@@ -70,6 +118,10 @@
 
         private System.Windows.Forms.TextBox tbLog;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGetPaper;
+        private System.Windows.Forms.Button btnGetExamScore;
+        private System.Windows.Forms.Button btnGetPaperContent;
+        private System.Windows.Forms.Button btnGetSubmitted;
     }
 }
 
