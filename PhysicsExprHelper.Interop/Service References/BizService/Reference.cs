@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhysicsExprHelper.BizService {
+namespace PhysicsExprHelper.Interop.BizService {
     using System.Runtime.Serialization;
     using System;
     
@@ -110,8 +110,8 @@ namespace PhysicsExprHelper.BizService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SvcResponse", Namespace="http://www.ustcori.com/2009/10")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PhysicsExprHelper.BizService.SvcRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PhysicsExprHelper.BizService.ResponseStatus))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PhysicsExprHelper.Interop.BizService.SvcRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PhysicsExprHelper.Interop.BizService.ResponseStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, object>))]
     public partial class SvcResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -131,7 +131,7 @@ namespace PhysicsExprHelper.BizService {
         private int RecordCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PhysicsExprHelper.BizService.ResponseStatus StatusField;
+        private PhysicsExprHelper.Interop.BizService.ResponseStatus StatusField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -196,7 +196,7 @@ namespace PhysicsExprHelper.BizService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public PhysicsExprHelper.BizService.ResponseStatus Status {
+        public PhysicsExprHelper.Interop.BizService.ResponseStatus Status {
             get {
                 return this.StatusField;
             }
@@ -237,20 +237,20 @@ namespace PhysicsExprHelper.BizService {
     public interface IBizService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.ustcori.com/2009/10/IBizService/DoService", ReplyAction="http://www.ustcori.com/2009/10/IBizService/DoServiceResponse")]
-        PhysicsExprHelper.BizService.DoServiceResponse DoService(PhysicsExprHelper.BizService.DoServiceRequest request);
+        PhysicsExprHelper.Interop.BizService.DoServiceResponse DoService(PhysicsExprHelper.Interop.BizService.DoServiceRequest request);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://www.ustcori.com/2009/10/IBizService/DoService", ReplyAction="http://www.ustcori.com/2009/10/IBizService/DoServiceResponse")]
-        System.IAsyncResult BeginDoService(PhysicsExprHelper.BizService.DoServiceRequest request, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginDoService(PhysicsExprHelper.Interop.BizService.DoServiceRequest request, System.AsyncCallback callback, object asyncState);
         
-        PhysicsExprHelper.BizService.DoServiceResponse EndDoService(System.IAsyncResult result);
+        PhysicsExprHelper.Interop.BizService.DoServiceResponse EndDoService(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.ustcori.com/2009/10/IBizService/SyncCMMUser", ReplyAction="http://www.ustcori.com/2009/10/IBizService/SyncCMMUserResponse")]
-        PhysicsExprHelper.BizService.SyncCMMUserResponse SyncCMMUser(PhysicsExprHelper.BizService.SyncCMMUserRequest request);
+        PhysicsExprHelper.Interop.BizService.SyncCMMUserResponse SyncCMMUser(PhysicsExprHelper.Interop.BizService.SyncCMMUserRequest request);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://www.ustcori.com/2009/10/IBizService/SyncCMMUser", ReplyAction="http://www.ustcori.com/2009/10/IBizService/SyncCMMUserResponse")]
-        System.IAsyncResult BeginSyncCMMUser(PhysicsExprHelper.BizService.SyncCMMUserRequest request, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginSyncCMMUser(PhysicsExprHelper.Interop.BizService.SyncCMMUserRequest request, System.AsyncCallback callback, object asyncState);
         
-        PhysicsExprHelper.BizService.SyncCMMUserResponse EndSyncCMMUser(System.IAsyncResult result);
+        PhysicsExprHelper.Interop.BizService.SyncCMMUserResponse EndSyncCMMUser(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -259,12 +259,12 @@ namespace PhysicsExprHelper.BizService {
     public partial class DoServiceRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.ustcori.com/2009/10", Order=0)]
-        public PhysicsExprHelper.BizService.SvcRequest request;
+        public PhysicsExprHelper.Interop.BizService.SvcRequest request;
         
         public DoServiceRequest() {
         }
         
-        public DoServiceRequest(PhysicsExprHelper.BizService.SvcRequest request) {
+        public DoServiceRequest(PhysicsExprHelper.Interop.BizService.SvcRequest request) {
             this.request = request;
         }
     }
@@ -275,12 +275,12 @@ namespace PhysicsExprHelper.BizService {
     public partial class DoServiceResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.ustcori.com/2009/10", Order=0)]
-        public PhysicsExprHelper.BizService.SvcResponse DoServiceResult;
+        public PhysicsExprHelper.Interop.BizService.SvcResponse DoServiceResult;
         
         public DoServiceResponse() {
         }
         
-        public DoServiceResponse(PhysicsExprHelper.BizService.SvcResponse DoServiceResult) {
+        public DoServiceResponse(PhysicsExprHelper.Interop.BizService.SvcResponse DoServiceResult) {
             this.DoServiceResult = DoServiceResult;
         }
     }
@@ -311,7 +311,7 @@ namespace PhysicsExprHelper.BizService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBizServiceChannel : PhysicsExprHelper.BizService.IBizService, System.ServiceModel.IClientChannel {
+    public interface IBizServiceChannel : PhysicsExprHelper.Interop.BizService.IBizService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -325,10 +325,10 @@ namespace PhysicsExprHelper.BizService {
             this.results = results;
         }
         
-        public PhysicsExprHelper.BizService.DoServiceResponse Result {
+        public PhysicsExprHelper.Interop.BizService.DoServiceResponse Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((PhysicsExprHelper.BizService.DoServiceResponse)(this.results[0]));
+                return ((PhysicsExprHelper.Interop.BizService.DoServiceResponse)(this.results[0]));
             }
         }
     }
@@ -344,17 +344,17 @@ namespace PhysicsExprHelper.BizService {
             this.results = results;
         }
         
-        public PhysicsExprHelper.BizService.SyncCMMUserResponse Result {
+        public PhysicsExprHelper.Interop.BizService.SyncCMMUserResponse Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((PhysicsExprHelper.BizService.SyncCMMUserResponse)(this.results[0]));
+                return ((PhysicsExprHelper.Interop.BizService.SyncCMMUserResponse)(this.results[0]));
             }
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BizServiceClient : System.ServiceModel.ClientBase<PhysicsExprHelper.BizService.IBizService>, PhysicsExprHelper.BizService.IBizService {
+    public partial class BizServiceClient : System.ServiceModel.ClientBase<PhysicsExprHelper.Interop.BizService.IBizService>, PhysicsExprHelper.Interop.BizService.IBizService {
         
         private BeginOperationDelegate onBeginDoServiceDelegate;
         
@@ -391,27 +391,27 @@ namespace PhysicsExprHelper.BizService {
         
         public event System.EventHandler<SyncCMMUserCompletedEventArgs> SyncCMMUserCompleted;
         
-        public PhysicsExprHelper.BizService.DoServiceResponse DoService(PhysicsExprHelper.BizService.DoServiceRequest request) {
+        public PhysicsExprHelper.Interop.BizService.DoServiceResponse DoService(PhysicsExprHelper.Interop.BizService.DoServiceRequest request) {
             return base.Channel.DoService(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginDoService(PhysicsExprHelper.BizService.DoServiceRequest request, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BeginDoService(PhysicsExprHelper.Interop.BizService.DoServiceRequest request, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginDoService(request, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public PhysicsExprHelper.BizService.DoServiceResponse EndDoService(System.IAsyncResult result) {
+        public PhysicsExprHelper.Interop.BizService.DoServiceResponse EndDoService(System.IAsyncResult result) {
             return base.Channel.EndDoService(result);
         }
         
         private System.IAsyncResult OnBeginDoService(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PhysicsExprHelper.BizService.DoServiceRequest request = ((PhysicsExprHelper.BizService.DoServiceRequest)(inValues[0]));
+            PhysicsExprHelper.Interop.BizService.DoServiceRequest request = ((PhysicsExprHelper.Interop.BizService.DoServiceRequest)(inValues[0]));
             return this.BeginDoService(request, callback, asyncState);
         }
         
         private object[] OnEndDoService(System.IAsyncResult result) {
-            PhysicsExprHelper.BizService.DoServiceResponse retVal = this.EndDoService(result);
+            PhysicsExprHelper.Interop.BizService.DoServiceResponse retVal = this.EndDoService(result);
             return new object[] {
                     retVal};
         }
@@ -423,11 +423,11 @@ namespace PhysicsExprHelper.BizService {
             }
         }
         
-        public void DoServiceAsync(PhysicsExprHelper.BizService.DoServiceRequest request) {
+        public void DoServiceAsync(PhysicsExprHelper.Interop.BizService.DoServiceRequest request) {
             this.DoServiceAsync(request, null);
         }
         
-        public void DoServiceAsync(PhysicsExprHelper.BizService.DoServiceRequest request, object userState) {
+        public void DoServiceAsync(PhysicsExprHelper.Interop.BizService.DoServiceRequest request, object userState) {
             if ((this.onBeginDoServiceDelegate == null)) {
                 this.onBeginDoServiceDelegate = new BeginOperationDelegate(this.OnBeginDoService);
             }
@@ -441,27 +441,27 @@ namespace PhysicsExprHelper.BizService {
                         request}, this.onEndDoServiceDelegate, this.onDoServiceCompletedDelegate, userState);
         }
         
-        public PhysicsExprHelper.BizService.SyncCMMUserResponse SyncCMMUser(PhysicsExprHelper.BizService.SyncCMMUserRequest request) {
+        public PhysicsExprHelper.Interop.BizService.SyncCMMUserResponse SyncCMMUser(PhysicsExprHelper.Interop.BizService.SyncCMMUserRequest request) {
             return base.Channel.SyncCMMUser(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginSyncCMMUser(PhysicsExprHelper.BizService.SyncCMMUserRequest request, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BeginSyncCMMUser(PhysicsExprHelper.Interop.BizService.SyncCMMUserRequest request, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginSyncCMMUser(request, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public PhysicsExprHelper.BizService.SyncCMMUserResponse EndSyncCMMUser(System.IAsyncResult result) {
+        public PhysicsExprHelper.Interop.BizService.SyncCMMUserResponse EndSyncCMMUser(System.IAsyncResult result) {
             return base.Channel.EndSyncCMMUser(result);
         }
         
         private System.IAsyncResult OnBeginSyncCMMUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PhysicsExprHelper.BizService.SyncCMMUserRequest request = ((PhysicsExprHelper.BizService.SyncCMMUserRequest)(inValues[0]));
+            PhysicsExprHelper.Interop.BizService.SyncCMMUserRequest request = ((PhysicsExprHelper.Interop.BizService.SyncCMMUserRequest)(inValues[0]));
             return this.BeginSyncCMMUser(request, callback, asyncState);
         }
         
         private object[] OnEndSyncCMMUser(System.IAsyncResult result) {
-            PhysicsExprHelper.BizService.SyncCMMUserResponse retVal = this.EndSyncCMMUser(result);
+            PhysicsExprHelper.Interop.BizService.SyncCMMUserResponse retVal = this.EndSyncCMMUser(result);
             return new object[] {
                     retVal};
         }
@@ -473,11 +473,11 @@ namespace PhysicsExprHelper.BizService {
             }
         }
         
-        public void SyncCMMUserAsync(PhysicsExprHelper.BizService.SyncCMMUserRequest request) {
+        public void SyncCMMUserAsync(PhysicsExprHelper.Interop.BizService.SyncCMMUserRequest request) {
             this.SyncCMMUserAsync(request, null);
         }
         
-        public void SyncCMMUserAsync(PhysicsExprHelper.BizService.SyncCMMUserRequest request, object userState) {
+        public void SyncCMMUserAsync(PhysicsExprHelper.Interop.BizService.SyncCMMUserRequest request, object userState) {
             if ((this.onBeginSyncCMMUserDelegate == null)) {
                 this.onBeginSyncCMMUserDelegate = new BeginOperationDelegate(this.OnBeginSyncCMMUser);
             }

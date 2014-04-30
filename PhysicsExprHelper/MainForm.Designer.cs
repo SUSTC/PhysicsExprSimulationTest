@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tbLog = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.tmrCheckLogin = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // tbLog
@@ -53,12 +51,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // tmrCheckLogin
-            // 
-            this.tmrCheckLogin.Enabled = true;
-            this.tmrCheckLogin.Interval = 1000;
-            this.tmrCheckLogin.Tick += new System.EventHandler(this.tmrCheckLogin_Tick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -78,7 +70,6 @@
 
         private System.Windows.Forms.TextBox tbLog;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Timer tmrCheckLogin;
     }
 }
 

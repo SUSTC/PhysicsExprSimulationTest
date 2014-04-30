@@ -9,16 +9,16 @@ using System.Windows.Forms;
 
 namespace PhysicsExprHelper
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            PhysicsExprHelper.ExprSystems.UserSystem.interfaceLogin(txtUser.Text, txtPass.Text);
+            PhysicsExprHelper.Interop.UserSystem.interfaceLogin(txtUser.Text, txtPass.Text);
             this.Close();
         }
 
