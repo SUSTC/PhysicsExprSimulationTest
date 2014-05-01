@@ -3,6 +3,10 @@ PhysicsExprSimulationTest
 
 Test system for the USTCORi Physics Experiment Simulation System.
 
+# New Function
+
+* StudyBug: Find out that how many people is struggling on the experiment system :)
+
 # Functions
 
 * Login using your credentials
