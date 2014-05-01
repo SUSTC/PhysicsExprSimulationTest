@@ -1,6 +1,6 @@
 ﻿namespace PhysicsExprHelper
 {
-    partial class LoginForm
+    partial class LogOnForm
     {
         /// <summary>
         /// Required designer variable.
@@ -78,7 +78,7 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // Form1
+            // LogOnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,7 +88,8 @@
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtUser);
-            this.Name = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "LoginForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Login";
             this.ResumeLayout(false);

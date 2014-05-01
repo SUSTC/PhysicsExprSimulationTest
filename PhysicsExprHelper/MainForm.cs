@@ -13,7 +13,6 @@ namespace PhysicsExprHelper
 {
     public partial class MainForm : Form
     {
-        int id = 11310001;
 
         public MainForm()
         {
@@ -28,8 +27,8 @@ namespace PhysicsExprHelper
         private void button1_Click(object sender, EventArgs e)
         {
 
-            (new LoginForm()).Show();
-            
+            (new LogOnForm()).Show();
+
         }
 
         private void btnGetPaper_Click(object sender, EventArgs e)
@@ -50,17 +49,22 @@ namespace PhysicsExprHelper
             String examID = Microsoft.VisualBasic.Interaction.InputBox("Enter Exam ID", "951");
             String paperContent;
             paperContent = Interop.ExamSystem.findPaperContent(examID, stuID).DataString;
-            
-            if (paperContent!="null") tbLog.AppendText(Newtonsoft.Json.JsonConvert.DeserializeObject<string>(paperContent));
+
+            if (paperContent != "null") tbLog.AppendText(Newtonsoft.Json.JsonConvert.DeserializeObject<string>(paperContent));
         }
 
         private void btnGetSubmitted_Click(object sender, EventArgs e)
         {
             String examID = Microsoft.VisualBasic.Interaction.InputBox("Enter Exam ID", "951");
-            
+
 
             tbLog.AppendText(Interop.ExamSystem.findSubmitStudentByExamID(examID).DataString);
 
+        }
+
+        private void btnStudyBug_Click(object sender, EventArgs e)
+        {
+            (new StudyBug()).Show();
         }
 
 

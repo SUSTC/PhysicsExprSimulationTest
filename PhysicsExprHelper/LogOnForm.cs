@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace PhysicsExprHelper
 {
-    public partial class LoginForm : Form
+    public partial class LogOnForm : Form
     {
-        public LoginForm()
+        public LogOnForm()
         {
             InitializeComponent();
         }
@@ -22,6 +22,6 @@ namespace PhysicsExprHelper
             this.Close();
         }
 
-        
+
     }
 }

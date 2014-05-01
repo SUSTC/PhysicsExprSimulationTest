@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PhysicsExprHelper.Interop
 {
-    
+
 
     public class ExamSystem
     {
@@ -51,7 +51,7 @@ namespace PhysicsExprHelper.Interop
                 MethodName = "FindExamScoreByStudentIDNew"
             };
             req.Parameters = new Dictionary<string, object>();
-            req.Parameters.Add("studentID", "\""+studentID+"\"");
+            req.Parameters.Add("studentID", "\"" + studentID + "\"");
             BizService.SvcResponse res;
             doSvcRequest = new BizService.DoServiceRequest(req);
 

@@ -15,5 +15,25 @@ namespace PhysicsExprHelper
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 1; i < 1000; i++)
+            {
+                Interop.BizService.SvcResponse resp;
+                resp = Interop.UserSystem.isUserOnline("11310" + i.ToString("D3", System.Globalization.CultureInfo.InvariantCulture), true);
+                if ((resp.DataString == "1"))
+                {
+                    Interop.BizService.SvcResponse user;
+                    user = Interop.ExamSystem.findExamScoreByStudentIDNew("11310" + i.ToString("D3"));
+
+                    if (user.DataString != "[]")
+                    {
+                        Interop.ExamScoreEntry[] userdata = Newtonsoft.Json.JsonConvert.DeserializeObject<Interop.ExamScoreEntry[]>(user.DataString);
+                        listView1.Items.Add(new ListViewItem(userdata[0].StudentName));
+                    }
+                }
+            }
+        }
     }
 }

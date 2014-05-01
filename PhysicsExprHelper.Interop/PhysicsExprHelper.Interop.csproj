@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamScoreEntry.cs" />
     <Compile Include="ExamSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\BizService\Reference.cs">

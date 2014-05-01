@@ -34,6 +34,7 @@
             this.btnGetExamScore = new System.Windows.Forms.Button();
             this.btnGetPaperContent = new System.Windows.Forms.Button();
             this.btnGetSubmitted = new System.Windows.Forms.Button();
+            this.btnStudyBug = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbLog
@@ -95,17 +96,29 @@
             this.btnGetSubmitted.UseVisualStyleBackColor = true;
             this.btnGetSubmitted.Click += new System.EventHandler(this.btnGetSubmitted_Click);
             // 
+            // btnStudyBug
+            // 
+            this.btnStudyBug.Location = new System.Drawing.Point(496, 353);
+            this.btnStudyBug.Name = "btnStudyBug";
+            this.btnStudyBug.Size = new System.Drawing.Size(105, 31);
+            this.btnStudyBug.TabIndex = 6;
+            this.btnStudyBug.Text = "StudyBug";
+            this.btnStudyBug.UseVisualStyleBackColor = true;
+            this.btnStudyBug.Click += new System.EventHandler(this.btnStudyBug_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 396);
+            this.Controls.Add(this.btnStudyBug);
             this.Controls.Add(this.btnGetSubmitted);
             this.Controls.Add(this.btnGetPaperContent);
             this.Controls.Add(this.btnGetExamScore);
             this.Controls.Add(this.btnGetPaper);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tbLog);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -122,6 +135,7 @@
         private System.Windows.Forms.Button btnGetExamScore;
         private System.Windows.Forms.Button btnGetPaperContent;
         private System.Windows.Forms.Button btnGetSubmitted;
+        private System.Windows.Forms.Button btnStudyBug;
     }
 }
 
