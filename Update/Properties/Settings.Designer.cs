@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace update.Properties
+namespace Update.Properties
 {
 
 

@@ -268,10 +268,10 @@ namespace PhysicsExprHelper
                 {
                     return;
                 }
-                if (Int32.Parse(info["version"].ToString()) == this.version)
+                if (Int32.Parse(info["version"].ToString()) > this.version)
                 {
                     MessageBox.Show(info["LatestVersion"].ToString()+":"+info["What's New"].ToString(),"发现新版本，即将更新");
-                    System.Diagnostics.Process.Start("update.exe");
+                    System.Diagnostics.Process.Start(System.Environment.CurrentDirectory+@"\update\Update.exe");
                     Close();
                 }
                 else

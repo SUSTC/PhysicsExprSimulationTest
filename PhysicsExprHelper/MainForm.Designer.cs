@@ -172,6 +172,7 @@
             // 
             // menuSet
             // 
+            this.menuSet.Enabled = false;
             this.menuSet.Name = "menuSet";
             this.menuSet.Size = new System.Drawing.Size(211, 30);
             this.menuSet.Text = "设置";
@@ -202,14 +203,14 @@
             // menuAbout
             // 
             this.menuAbout.Name = "menuAbout";
-            this.menuAbout.Size = new System.Drawing.Size(164, 30);
+            this.menuAbout.Size = new System.Drawing.Size(211, 30);
             this.menuAbout.Text = "关于";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
             // menuBug
             // 
             this.menuBug.Name = "menuBug";
-            this.menuBug.Size = new System.Drawing.Size(164, 30);
+            this.menuBug.Size = new System.Drawing.Size(211, 30);
             this.menuBug.Text = "bug反馈";
             this.menuBug.Click += new System.EventHandler(this.menuBug_Click);
             // 
