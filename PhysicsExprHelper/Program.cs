@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace PhysicsExprHelper
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// 应用程序的主入口点。
@@ -15,6 +15,7 @@ namespace PhysicsExprHelper
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             Application.Run(new MainForm());
         }
     }
