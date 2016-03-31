@@ -58,6 +58,9 @@ namespace PhysicsExprHelper
 
         }
 
-
+        private void LogOnForm_Load(object sender, EventArgs e)
+        {
+            (new PhysicsExprHelper.Interop.UserSystem()).googleAnalytics("Login", "2");
+        }
     }
 }

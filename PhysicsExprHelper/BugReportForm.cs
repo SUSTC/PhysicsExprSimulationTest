@@ -14,6 +14,7 @@ namespace PhysicsExprHelper
         public BugReportForm()
         {
             InitializeComponent();
+            (new PhysicsExprHelper.Interop.UserSystem()).googleAnalytics("Bug", "2");
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

@@ -46,25 +46,26 @@
             this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBug = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGetAnsFromGitHub = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLog
             // 
-            this.tbLog.Location = new System.Drawing.Point(202, 35);
-            this.tbLog.Margin = new System.Windows.Forms.Padding(4);
+            this.tbLog.Location = new System.Drawing.Point(219, 35);
+            this.tbLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbLog.Multiline = true;
             this.tbLog.Name = "tbLog";
             this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbLog.Size = new System.Drawing.Size(961, 500);
+            this.tbLog.Size = new System.Drawing.Size(557, 334);
             this.tbLog.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(18, 35);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(11, 71);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(176, 46);
+            this.button1.Size = new System.Drawing.Size(204, 30);
             this.button1.TabIndex = 1;
             this.button1.Text = "登录实验大厅";
             this.button1.UseVisualStyleBackColor = true;
@@ -72,10 +73,10 @@
             // 
             // btnGetPaper
             // 
-            this.btnGetPaper.Location = new System.Drawing.Point(18, 257);
-            this.btnGetPaper.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGetPaper.Location = new System.Drawing.Point(11, 213);
+            this.btnGetPaper.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGetPaper.Name = "btnGetPaper";
-            this.btnGetPaper.Size = new System.Drawing.Size(176, 46);
+            this.btnGetPaper.Size = new System.Drawing.Size(204, 30);
             this.btnGetPaper.TabIndex = 2;
             this.btnGetPaper.Text = "查看试卷XML";
             this.btnGetPaper.UseVisualStyleBackColor = true;
@@ -83,10 +84,10 @@
             // 
             // btnGetExamScore
             // 
-            this.btnGetExamScore.Location = new System.Drawing.Point(18, 90);
-            this.btnGetExamScore.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGetExamScore.Location = new System.Drawing.Point(11, 107);
+            this.btnGetExamScore.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGetExamScore.Name = "btnGetExamScore";
-            this.btnGetExamScore.Size = new System.Drawing.Size(176, 46);
+            this.btnGetExamScore.Size = new System.Drawing.Size(204, 30);
             this.btnGetExamScore.TabIndex = 3;
             this.btnGetExamScore.Text = "查看成绩";
             this.btnGetExamScore.UseVisualStyleBackColor = true;
@@ -94,10 +95,10 @@
             // 
             // btnGetPaperContent
             // 
-            this.btnGetPaperContent.Location = new System.Drawing.Point(18, 201);
-            this.btnGetPaperContent.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGetPaperContent.Location = new System.Drawing.Point(11, 177);
+            this.btnGetPaperContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGetPaperContent.Name = "btnGetPaperContent";
-            this.btnGetPaperContent.Size = new System.Drawing.Size(176, 46);
+            this.btnGetPaperContent.Size = new System.Drawing.Size(204, 30);
             this.btnGetPaperContent.TabIndex = 4;
             this.btnGetPaperContent.Text = "查看答卷内容";
             this.btnGetPaperContent.UseVisualStyleBackColor = true;
@@ -106,10 +107,10 @@
             // btnGetSubmitted
             // 
             this.btnGetSubmitted.Enabled = false;
-            this.btnGetSubmitted.Location = new System.Drawing.Point(18, 312);
-            this.btnGetSubmitted.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGetSubmitted.Location = new System.Drawing.Point(11, 249);
+            this.btnGetSubmitted.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGetSubmitted.Name = "btnGetSubmitted";
-            this.btnGetSubmitted.Size = new System.Drawing.Size(176, 46);
+            this.btnGetSubmitted.Size = new System.Drawing.Size(204, 30);
             this.btnGetSubmitted.TabIndex = 5;
             this.btnGetSubmitted.Text = "看看学霸们的成绩";
             this.btnGetSubmitted.UseVisualStyleBackColor = true;
@@ -117,10 +118,10 @@
             // 
             // btnStudyBug
             // 
-            this.btnStudyBug.Location = new System.Drawing.Point(18, 435);
-            this.btnStudyBug.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStudyBug.Location = new System.Drawing.Point(11, 301);
+            this.btnStudyBug.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStudyBug.Name = "btnStudyBug";
-            this.btnStudyBug.Size = new System.Drawing.Size(176, 46);
+            this.btnStudyBug.Size = new System.Drawing.Size(204, 30);
             this.btnStudyBug.TabIndex = 6;
             this.btnStudyBug.Text = "看看谁还在刷实验";
             this.btnStudyBug.UseVisualStyleBackColor = true;
@@ -128,10 +129,10 @@
             // 
             // btnGetAns
             // 
-            this.btnGetAns.Location = new System.Drawing.Point(18, 145);
-            this.btnGetAns.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGetAns.Location = new System.Drawing.Point(11, 142);
+            this.btnGetAns.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGetAns.Name = "btnGetAns";
-            this.btnGetAns.Size = new System.Drawing.Size(176, 46);
+            this.btnGetAns.Size = new System.Drawing.Size(204, 30);
             this.btnGetAns.TabIndex = 7;
             this.btnGetAns.Text = "查看选择题答案";
             this.btnGetAns.UseVisualStyleBackColor = true;
@@ -139,10 +140,10 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(18, 489);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExit.Location = new System.Drawing.Point(11, 337);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(176, 46);
+            this.btnExit.Size = new System.Drawing.Size(204, 30);
             this.btnExit.TabIndex = 9;
             this.btnExit.Text = "退出实验大厅";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -156,7 +157,8 @@
             this.menuHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1170, 32);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(783, 25);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -167,27 +169,27 @@
             this.menuUpdate,
             this.menuExit});
             this.menuFile.Name = "menuFile";
-            this.menuFile.Size = new System.Drawing.Size(58, 28);
+            this.menuFile.Size = new System.Drawing.Size(44, 21);
             this.menuFile.Text = "文件";
             // 
             // menuSet
             // 
             this.menuSet.Enabled = false;
             this.menuSet.Name = "menuSet";
-            this.menuSet.Size = new System.Drawing.Size(211, 30);
+            this.menuSet.Size = new System.Drawing.Size(124, 22);
             this.menuSet.Text = "设置";
             // 
             // menuUpdate
             // 
             this.menuUpdate.Name = "menuUpdate";
-            this.menuUpdate.Size = new System.Drawing.Size(211, 30);
+            this.menuUpdate.Size = new System.Drawing.Size(124, 22);
             this.menuUpdate.Text = "检查更新";
             this.menuUpdate.Click += new System.EventHandler(this.menuUpdate_Click);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(211, 30);
+            this.menuExit.Size = new System.Drawing.Size(124, 22);
             this.menuExit.Text = "退出";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
@@ -197,28 +199,40 @@
             this.menuAbout,
             this.menuBug});
             this.menuHelp.Name = "menuHelp";
-            this.menuHelp.Size = new System.Drawing.Size(58, 28);
+            this.menuHelp.Size = new System.Drawing.Size(44, 21);
             this.menuHelp.Text = "帮助";
             // 
             // menuAbout
             // 
             this.menuAbout.Name = "menuAbout";
-            this.menuAbout.Size = new System.Drawing.Size(211, 30);
+            this.menuAbout.Size = new System.Drawing.Size(123, 22);
             this.menuAbout.Text = "关于";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
             // menuBug
             // 
             this.menuBug.Name = "menuBug";
-            this.menuBug.Size = new System.Drawing.Size(211, 30);
+            this.menuBug.Size = new System.Drawing.Size(123, 22);
             this.menuBug.Text = "bug反馈";
             this.menuBug.Click += new System.EventHandler(this.menuBug_Click);
             // 
+            // btnGetAnsFromGitHub
+            // 
+            this.btnGetAnsFromGitHub.Location = new System.Drawing.Point(11, 35);
+            this.btnGetAnsFromGitHub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetAnsFromGitHub.Name = "btnGetAnsFromGitHub";
+            this.btnGetAnsFromGitHub.Size = new System.Drawing.Size(204, 30);
+            this.btnGetAnsFromGitHub.TabIndex = 11;
+            this.btnGetAnsFromGitHub.Text = "查看选择题答案（安全模式）";
+            this.btnGetAnsFromGitHub.UseVisualStyleBackColor = true;
+            this.btnGetAnsFromGitHub.Click += new System.EventHandler(this.btnGetAnsFromGitHub_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1170, 547);
+            this.ClientSize = new System.Drawing.Size(783, 380);
+            this.Controls.Add(this.btnGetAnsFromGitHub);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnGetAns);
             this.Controls.Add(this.btnStudyBug);
@@ -232,7 +246,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "物理实验大厅工具箱";
@@ -263,6 +277,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuSet;
         private System.Windows.Forms.ToolStripMenuItem menuUpdate;
         private System.Windows.Forms.ToolStripMenuItem menuExit;
+        private System.Windows.Forms.Button btnGetAnsFromGitHub;
     }
 }
 

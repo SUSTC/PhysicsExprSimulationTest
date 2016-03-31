@@ -38,47 +38,47 @@
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(70, 18);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUser.Location = new System.Drawing.Point(93, 24);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(272, 28);
+            this.txtUser.Size = new System.Drawing.Size(361, 35);
             this.txtUser.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(24, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 18);
+            this.label1.Size = new System.Drawing.Size(58, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "User";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 63);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(24, 84);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 18);
+            this.label2.Size = new System.Drawing.Size(58, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "Pass";
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(70, 58);
-            this.txtPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPass.Location = new System.Drawing.Point(93, 77);
+            this.txtPass.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(272, 28);
+            this.txtPass.Size = new System.Drawing.Size(361, 35);
             this.txtPass.TabIndex = 2;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(378, 18);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Location = new System.Drawing.Point(504, 24);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(104, 63);
+            this.btnLogin.Size = new System.Drawing.Size(139, 84);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -86,9 +86,9 @@
             // 
             // LogOnForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 148);
+            this.ClientSize = new System.Drawing.Size(704, 197);
             this.ControlBox = false;
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label2);
@@ -97,13 +97,14 @@
             this.Controls.Add(this.txtUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "LogOnForm";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "开挂也要按照基本法！";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.LogOnForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

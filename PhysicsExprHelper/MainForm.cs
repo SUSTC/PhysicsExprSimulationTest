@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Xml;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Net;
 
 namespace PhysicsExprHelper
 {
@@ -33,7 +34,9 @@ namespace PhysicsExprHelper
             status = false;
             check = false;
             setStatus(check);
-            version = 1;
+            version = 3;
+            (new PhysicsExprHelper.Interop.UserSystem()).googleAnalytics("Main", version.ToString());
+            checkUpdate();
         }
 
         private Boolean download(String url,String name)
@@ -64,6 +67,7 @@ namespace PhysicsExprHelper
         private void Form1_Load(object sender, EventArgs e)
         {
             Interop.UserSystem.logoutUser(user);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -87,20 +91,22 @@ namespace PhysicsExprHelper
             if(paperID == "")
             {
                 MessageBox.Show("Naive,不知道先戳下查成绩看看试卷编号么？", "Too Young");
+                return;
             }
+
             String text = Interop.ExamSystem.findPaperContentByPaperID(paperID).DataString;
             text = text.Replace("\\r\\n", String.Empty).Replace("\"", String.Empty);
 
             Match mat = Regex.Match(text, @"<PaperName>(.+?)</PaperName>");
-            tbLog.AppendText(mat.Groups[1].Value+"\n");
+            tbLog.AppendText(mat.Groups[1].Value + "答卷内容：\n");
 
-            string pat = @"<StdAnswer>(.+?)</StdAnswer>";
+            string pat = @"<StudentAnswer>(.+?)</StudentAnswer>";
             Regex r = new Regex(pat, RegexOptions.IgnoreCase);
             Match m = r.Match(text);
             int matchCount = 0;
             while (m.Success)
             {
-                tbLog.AppendText("第"+(++matchCount)+"题" + ".");
+                tbLog.AppendText("第" + (++matchCount) + "题" + ".");
                 for (int i = 1; i <= 2; i++)
                 {
                     Group g = m.Groups[i];
@@ -108,13 +114,22 @@ namespace PhysicsExprHelper
                     for (int j = 0; j < cc.Count; j++)
                     {
                         Capture c = cc[j];
-                        tbLog.AppendText(c+ "\n");
+                        tbLog.AppendText(c + "\n");
                     }
                 }
                 m = m.NextMatch();
             }
         }
 
+        public void Write(string text,string name)
+        {
+            FileStream fs = new FileStream(name, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+            sw.Write(text);
+            sw.Close();
+            fs.Close();
+        }
+        
         private void btnGetExamScore_Click(object sender, EventArgs e)
         {
             if (status == false)
@@ -122,7 +137,6 @@ namespace PhysicsExprHelper
                 MessageBox.Show("Naive,不登录还咋玩？", "开挂也要按照基本法");
                 return;
             }
-            //String stuID = Microsoft.VisualBasic.Interaction.InputBox("学号：", "Excited!你想看谁的成绩？");
             String stuID = user;
             String score = Interop.ExamSystem.findExamScoreByStudentIDNew(stuID).DataString;
             JArray ja = (JArray)JsonConvert.DeserializeObject(score);
@@ -240,6 +254,7 @@ namespace PhysicsExprHelper
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            Interop.UserSystem.logoutUser(user);
             Close();
         }
 
@@ -255,10 +270,19 @@ namespace PhysicsExprHelper
 
         private void menuExit_Click(object sender, EventArgs e)
         {
+            Interop.UserSystem.logoutUser(user);
             Close();
         }
 
         private void menuUpdate_Click(object sender, EventArgs e)
+        {
+            if(checkUpdate())
+            {
+                MessageBox.Show("已经是最新版本");
+            }
+        }
+
+        private Boolean checkUpdate()
         {
             Boolean status = download("http://tsingedu.com/update/update.json", "update.json");
             if (status)
@@ -266,20 +290,17 @@ namespace PhysicsExprHelper
                 JObject info = readJson("update.json");
                 if (info == null)
                 {
-                    return;
+                    return false;;
                 }
                 if (Int32.Parse(info["version"].ToString()) > this.version)
                 {
-                    MessageBox.Show(info["LatestVersion"].ToString()+":"+info["What's New"].ToString(),"发现新版本，即将更新");
-                    System.Diagnostics.Process.Start(System.Environment.CurrentDirectory+@"\update\Update.exe");
+                    MessageBox.Show(info["LatestVersion"].ToString() + ":" + info["What's New"].ToString(), "发现新版本，即将更新");
+                    System.Diagnostics.Process.Start(System.Environment.CurrentDirectory + @"\update\Update.exe");
                     Close();
                 }
-                else
-                {
-                    MessageBox.Show("已经是最新版本");
-                }
-               
+
             }
+            return true;
         }
 
         private JObject readJson(string path)
@@ -299,6 +320,42 @@ namespace PhysicsExprHelper
                 return null;
             }
             
+        }
+
+        public void googleAnalytics(string view)
+        {
+            var request = (HttpWebRequest)WebRequest.Create("http://www.google-analytics.com/collect");
+            
+            var postData = @"v=1";
+            postData += @"&tid=UA-75748514-1";
+            postData += @"&cid="+ System.Guid.NewGuid().ToString();
+            postData += @"&t=event";
+            postData += @"&an=PEST";
+            postData += @"&av=" + this.version.ToString();
+            postData += @"&aid=SUSTC";
+            postData += @"&cd="+view;
+
+            var data = Encoding.ASCII.GetBytes(postData);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = data.Length;
+
+            request.UserAgent = @"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Win64; x64; Trident/6.0)";
+
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+
+            var response = (HttpWebResponse)request.GetResponse();
+
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+        }
+
+        private void btnGetAnsFromGitHub_Click(object sender, EventArgs e)
+        {
+            (new AnsSafeGet()).Show();
         }
     }
 }
