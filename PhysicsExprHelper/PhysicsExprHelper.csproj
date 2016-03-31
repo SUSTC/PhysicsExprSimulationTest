@@ -88,6 +88,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvancedMode.Designer.cs">
+      <DependentUpon>AdvancedMode.cs</DependentUpon>
+    </Compile>
     <Compile Include="AnsSafeGet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,10 @@
     <Compile Include="StudyBug.Designer.cs">
       <DependentUpon>StudyBug.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util.cs" />
+    <EmbeddedResource Include="AdvancedMode.resx">
+      <DependentUpon>AdvancedMode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnsSafeGet.resx">
       <DependentUpon>AnsSafeGet.cs</DependentUpon>
     </EmbeddedResource>

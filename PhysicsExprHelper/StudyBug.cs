@@ -41,5 +41,12 @@ namespace PhysicsExprHelper
             }
             progressBar.Value = 100;
         }
+
+        private void StudyBug_Load(object sender, EventArgs e)
+        {
+            new System.Threading.Thread(
+                new System.Threading.ParameterizedThreadStart(
+                    Util.googleAnalytics)).Start("Studybug");
+        }
     }
 }

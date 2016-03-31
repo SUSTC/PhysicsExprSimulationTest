@@ -36,9 +36,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(326, 474);
+            this.button1.Location = new System.Drawing.Point(489, 711);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 31);
+            this.button1.Size = new System.Drawing.Size(148, 46);
             this.button1.TabIndex = 1;
             this.button1.Text = "找队友233";
             this.button1.UseVisualStyleBackColor = true;
@@ -46,33 +47,37 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(12, 474);
+            this.progressBar.Location = new System.Drawing.Point(18, 711);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(308, 31);
+            this.progressBar.Size = new System.Drawing.Size(462, 46);
             this.progressBar.TabIndex = 2;
             // 
             // listBox
             // 
             this.listBox.FormattingEnabled = true;
-            this.listBox.ItemHeight = 12;
-            this.listBox.Location = new System.Drawing.Point(12, 9);
+            this.listBox.ItemHeight = 18;
+            this.listBox.Location = new System.Drawing.Point(18, 14);
+            this.listBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(414, 460);
+            this.listBox.Size = new System.Drawing.Size(619, 688);
             this.listBox.TabIndex = 4;
             // 
             // StudyBug
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 517);
+            this.ClientSize = new System.Drawing.Size(654, 765);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "StudyBug";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "半夜三更刷实验yoooo~";
+            this.Load += new System.EventHandler(this.StudyBug_Load);
             this.ResumeLayout(false);
 
         }

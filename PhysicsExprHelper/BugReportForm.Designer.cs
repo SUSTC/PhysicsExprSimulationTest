@@ -74,6 +74,7 @@
             this.Name = "BugReportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bug反馈";
+            this.Load += new System.EventHandler(this.BugReportForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

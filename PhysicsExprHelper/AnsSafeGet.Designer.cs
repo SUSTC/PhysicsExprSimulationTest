@@ -37,21 +37,19 @@
             // listBox
             // 
             this.listBox.FormattingEnabled = true;
-            this.listBox.ItemHeight = 12;
-            this.listBox.Location = new System.Drawing.Point(6, 6);
-            this.listBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox.ItemHeight = 18;
+            this.listBox.Location = new System.Drawing.Point(9, 9);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(283, 304);
+            this.listBox.Size = new System.Drawing.Size(422, 454);
             this.listBox.TabIndex = 0;
             this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // btnGet
             // 
             this.btnGet.Enabled = false;
-            this.btnGet.Location = new System.Drawing.Point(78, 314);
-            this.btnGet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGet.Location = new System.Drawing.Point(117, 471);
             this.btnGet.Name = "btnGet";
-            this.btnGet.Size = new System.Drawing.Size(134, 28);
+            this.btnGet.Size = new System.Drawing.Size(201, 42);
             this.btnGet.TabIndex = 1;
             this.btnGet.Text = "获取选定试卷的答案";
             this.btnGet.UseVisualStyleBackColor = true;
@@ -59,27 +57,25 @@
             // 
             // tbLog
             // 
-            this.tbLog.Location = new System.Drawing.Point(297, 6);
-            this.tbLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbLog.Location = new System.Drawing.Point(446, 9);
             this.tbLog.Multiline = true;
             this.tbLog.Name = "tbLog";
             this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbLog.Size = new System.Drawing.Size(282, 337);
+            this.tbLog.Size = new System.Drawing.Size(421, 504);
             this.tbLog.TabIndex = 2;
             // 
             // AnsSafeGet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 348);
+            this.ClientSize = new System.Drawing.Size(876, 522);
             this.Controls.Add(this.tbLog);
             this.Controls.Add(this.btnGet);
             this.Controls.Add(this.listBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AnsSafeGet";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "获取选择题答案（安全模式）";
             this.Load += new System.EventHandler(this.AnsSafeGet_Load);
             this.ResumeLayout(false);

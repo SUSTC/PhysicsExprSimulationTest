@@ -113,45 +113,5 @@ namespace PhysicsExprHelper.Interop
             return res;
 
         }
-
-
-        public void googleAnalytics(string view,string version)
-        {
-            try
-            {
-
-                var request = (HttpWebRequest)WebRequest.Create("http://www.google-analytics.com/collect");
-
-                var postData = @"v=1";
-                postData += @"&tid=UA-75748514-1";
-                postData += @"&cid=" + System.Guid.NewGuid().ToString();
-                postData += @"&t=event";
-                postData += @"&an=PEST";
-                postData += @"&av=" + version;
-                postData += @"&aid=SUSTC";
-                postData += @"&cd=" + view;
-
-                var data = Encoding.ASCII.GetBytes(postData);
-
-                request.Method = "POST";
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = data.Length;
-
-                request.UserAgent = @"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Win64; x64; Trident/6.0)";
-
-                using (var stream = request.GetRequestStream())
-                {
-                    stream.Write(data, 0, data.Length);
-                }
-
-                var response = (HttpWebResponse)request.GetResponse();
-
-                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            }
-            catch (Exception e)
-            {
-                return;
-            }
-        }
     }
 }

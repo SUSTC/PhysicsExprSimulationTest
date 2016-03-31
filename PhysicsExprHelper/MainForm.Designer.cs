@@ -30,8 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tbLog = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnGetPaper = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.btnGetExamScore = new System.Windows.Forms.Button();
             this.btnGetPaperContent = new System.Windows.Forms.Button();
             this.btnGetSubmitted = new System.Windows.Forms.Button();
@@ -47,47 +46,34 @@
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBug = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGetAnsFromGitHub = new System.Windows.Forms.Button();
+            this.btnDanger = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLog
             // 
-            this.tbLog.Location = new System.Drawing.Point(219, 35);
-            this.tbLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbLog.Location = new System.Drawing.Point(328, 52);
             this.tbLog.Multiline = true;
             this.tbLog.Name = "tbLog";
             this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbLog.Size = new System.Drawing.Size(557, 334);
+            this.tbLog.Size = new System.Drawing.Size(834, 499);
             this.tbLog.TabIndex = 0;
             // 
-            // button1
+            // btnLogin
             // 
-            this.button1.Location = new System.Drawing.Point(11, 71);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(204, 30);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "登录实验大厅";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnGetPaper
-            // 
-            this.btnGetPaper.Location = new System.Drawing.Point(11, 213);
-            this.btnGetPaper.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnGetPaper.Name = "btnGetPaper";
-            this.btnGetPaper.Size = new System.Drawing.Size(204, 30);
-            this.btnGetPaper.TabIndex = 2;
-            this.btnGetPaper.Text = "查看试卷XML";
-            this.btnGetPaper.UseVisualStyleBackColor = true;
-            this.btnGetPaper.Click += new System.EventHandler(this.btnGetPaper_Click);
+            this.btnLogin.Location = new System.Drawing.Point(16, 106);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(306, 45);
+            this.btnLogin.TabIndex = 1;
+            this.btnLogin.Text = "登录实验大厅";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnGetExamScore
             // 
-            this.btnGetExamScore.Location = new System.Drawing.Point(11, 107);
-            this.btnGetExamScore.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetExamScore.Location = new System.Drawing.Point(16, 160);
             this.btnGetExamScore.Name = "btnGetExamScore";
-            this.btnGetExamScore.Size = new System.Drawing.Size(204, 30);
+            this.btnGetExamScore.Size = new System.Drawing.Size(306, 45);
             this.btnGetExamScore.TabIndex = 3;
             this.btnGetExamScore.Text = "查看成绩";
             this.btnGetExamScore.UseVisualStyleBackColor = true;
@@ -95,10 +81,9 @@
             // 
             // btnGetPaperContent
             // 
-            this.btnGetPaperContent.Location = new System.Drawing.Point(11, 177);
-            this.btnGetPaperContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetPaperContent.Location = new System.Drawing.Point(16, 266);
             this.btnGetPaperContent.Name = "btnGetPaperContent";
-            this.btnGetPaperContent.Size = new System.Drawing.Size(204, 30);
+            this.btnGetPaperContent.Size = new System.Drawing.Size(306, 45);
             this.btnGetPaperContent.TabIndex = 4;
             this.btnGetPaperContent.Text = "查看答卷内容";
             this.btnGetPaperContent.UseVisualStyleBackColor = true;
@@ -107,10 +92,9 @@
             // btnGetSubmitted
             // 
             this.btnGetSubmitted.Enabled = false;
-            this.btnGetSubmitted.Location = new System.Drawing.Point(11, 249);
-            this.btnGetSubmitted.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetSubmitted.Location = new System.Drawing.Point(16, 317);
             this.btnGetSubmitted.Name = "btnGetSubmitted";
-            this.btnGetSubmitted.Size = new System.Drawing.Size(204, 30);
+            this.btnGetSubmitted.Size = new System.Drawing.Size(306, 45);
             this.btnGetSubmitted.TabIndex = 5;
             this.btnGetSubmitted.Text = "看看学霸们的成绩";
             this.btnGetSubmitted.UseVisualStyleBackColor = true;
@@ -118,10 +102,9 @@
             // 
             // btnStudyBug
             // 
-            this.btnStudyBug.Location = new System.Drawing.Point(11, 301);
-            this.btnStudyBug.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStudyBug.Location = new System.Drawing.Point(16, 452);
             this.btnStudyBug.Name = "btnStudyBug";
-            this.btnStudyBug.Size = new System.Drawing.Size(204, 30);
+            this.btnStudyBug.Size = new System.Drawing.Size(306, 45);
             this.btnStudyBug.TabIndex = 6;
             this.btnStudyBug.Text = "看看谁还在刷实验";
             this.btnStudyBug.UseVisualStyleBackColor = true;
@@ -129,10 +112,9 @@
             // 
             // btnGetAns
             // 
-            this.btnGetAns.Location = new System.Drawing.Point(11, 142);
-            this.btnGetAns.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetAns.Location = new System.Drawing.Point(16, 213);
             this.btnGetAns.Name = "btnGetAns";
-            this.btnGetAns.Size = new System.Drawing.Size(204, 30);
+            this.btnGetAns.Size = new System.Drawing.Size(306, 45);
             this.btnGetAns.TabIndex = 7;
             this.btnGetAns.Text = "查看选择题答案";
             this.btnGetAns.UseVisualStyleBackColor = true;
@@ -140,10 +122,9 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(11, 337);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Location = new System.Drawing.Point(16, 506);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(204, 30);
+            this.btnExit.Size = new System.Drawing.Size(306, 45);
             this.btnExit.TabIndex = 9;
             this.btnExit.Text = "退出实验大厅";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -157,8 +138,8 @@
             this.menuHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(783, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1174, 27);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -218,20 +199,34 @@
             // 
             // btnGetAnsFromGitHub
             // 
-            this.btnGetAnsFromGitHub.Location = new System.Drawing.Point(11, 35);
-            this.btnGetAnsFromGitHub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetAnsFromGitHub.Location = new System.Drawing.Point(16, 52);
             this.btnGetAnsFromGitHub.Name = "btnGetAnsFromGitHub";
-            this.btnGetAnsFromGitHub.Size = new System.Drawing.Size(204, 30);
+            this.btnGetAnsFromGitHub.Size = new System.Drawing.Size(306, 45);
             this.btnGetAnsFromGitHub.TabIndex = 11;
             this.btnGetAnsFromGitHub.Text = "查看选择题答案（安全模式）";
             this.btnGetAnsFromGitHub.UseVisualStyleBackColor = true;
             this.btnGetAnsFromGitHub.Click += new System.EventHandler(this.btnGetAnsFromGitHub_Click);
             // 
+            // btnDanger
+            // 
+            this.btnDanger.BackColor = System.Drawing.Color.Red;
+            this.btnDanger.Enabled = false;
+            this.btnDanger.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnDanger.ForeColor = System.Drawing.Color.White;
+            this.btnDanger.Location = new System.Drawing.Point(16, 381);
+            this.btnDanger.Name = "btnDanger";
+            this.btnDanger.Size = new System.Drawing.Size(306, 45);
+            this.btnDanger.TabIndex = 12;
+            this.btnDanger.Text = "增强模式";
+            this.btnDanger.UseVisualStyleBackColor = false;
+            this.btnDanger.Click += new System.EventHandler(this.btnDanger_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 380);
+            this.ClientSize = new System.Drawing.Size(1174, 570);
+            this.Controls.Add(this.btnDanger);
             this.Controls.Add(this.btnGetAnsFromGitHub);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnGetAns);
@@ -239,18 +234,16 @@
             this.Controls.Add(this.btnGetSubmitted);
             this.Controls.Add(this.btnGetPaperContent);
             this.Controls.Add(this.btnGetExamScore);
-            this.Controls.Add(this.btnGetPaper);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.tbLog);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "物理实验大厅工具箱";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -261,8 +254,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox tbLog;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnGetPaper;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnGetExamScore;
         private System.Windows.Forms.Button btnGetPaperContent;
         private System.Windows.Forms.Button btnGetSubmitted;
@@ -278,6 +270,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuUpdate;
         private System.Windows.Forms.ToolStripMenuItem menuExit;
         private System.Windows.Forms.Button btnGetAnsFromGitHub;
+        private System.Windows.Forms.Button btnDanger;
     }
 }
 

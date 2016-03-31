@@ -14,7 +14,6 @@ namespace PhysicsExprHelper
         public BugReportForm()
         {
             InitializeComponent();
-            (new PhysicsExprHelper.Interop.UserSystem()).googleAnalytics("Bug", "2");
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -25,7 +24,7 @@ namespace PhysicsExprHelper
                 return;
             }
             this.Text = "Bug反馈——正在发送...请不要关闭窗口";
-            if (SendMail("BugReport", this.bugContext.Text) == true)
+            if (Util.SendMail("BugReport", this.bugContext.Text) == true)
             {
                 MessageBox.Show("交易已经完成了", "发送完成");
                 this.Close();
@@ -37,34 +36,11 @@ namespace PhysicsExprHelper
             this.Text = "Bug反馈";
         }
 
-        private Boolean SendMail(String subject, String content)
+        private void BugReportForm_Load(object sender, EventArgs e)
         {
-            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
-            msg.To.Add("stlcopy@163.com");
-
-            msg.From = new System.Net.Mail.MailAddress("sustcreg@163.com", "BugReport", System.Text.Encoding.UTF8);
-            msg.Subject = subject;
-            msg.SubjectEncoding = System.Text.Encoding.UTF8;
-            msg.Body = content;
-            msg.BodyEncoding = System.Text.Encoding.UTF8;
-            msg.IsBodyHtml = false;
-            msg.Priority = System.Net.Mail.MailPriority.Normal;
-            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
-            client.Credentials = new System.Net.NetworkCredential("sustcreg@163.com", "sustc2015");
-
-            client.Port = 25;
-            client.Host = "smtp.163.com";
-            client.EnableSsl = false;
-            object userState = msg;
-            try
-            {
-                client.Send(msg);
-                return true;
-            }
-            catch (System.Net.Mail.SmtpException ex)
-            {
-                return false;
-            }
+            new System.Threading.Thread(
+                new System.Threading.ParameterizedThreadStart(
+                    Util.googleAnalytics)).Start("BugReport");
         }
     }
 }

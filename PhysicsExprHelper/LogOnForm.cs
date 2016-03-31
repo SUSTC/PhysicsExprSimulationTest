@@ -15,10 +15,10 @@ namespace PhysicsExprHelper
     {
         public String userid { get; private set; }
         public Boolean status { get; private set; }
-        public MainForm Form1 { get; private set; }
+        public MainForm FormMain { get; private set; }
         public LogOnForm(MainForm _Form)
         {
-            Form1 = _Form;
+            FormMain = _Form;
             status = false;
             InitializeComponent();
         }
@@ -43,10 +43,12 @@ namespace PhysicsExprHelper
                 MessageBox.Show("可以搞个大新闻了","Excited");
                 userid = txtUser.Text;
                 status = true;
-                Form1.user = userid;
-                Form1.status = status;
-                Form1.Visible = true;
-                Form1.Text = Form1.Text + "  " + jreq["SchoolName"].ToString() + "  " + txtUser.Text;
+                FormMain.user = userid;
+                FormMain.status = status;
+                FormMain.Visible = true;
+                FormMain.Text = FormMain.Text + "  " + jreq["SchoolName"].ToString() + "  " + txtUser.Text;
+                FormMain.disableLogin();
+                FormMain.setStatus(status);
                 this.Close();
             }
             else
@@ -60,7 +62,9 @@ namespace PhysicsExprHelper
 
         private void LogOnForm_Load(object sender, EventArgs e)
         {
-            (new PhysicsExprHelper.Interop.UserSystem()).googleAnalytics("Login", "2");
+            new System.Threading.Thread(
+                new System.Threading.ParameterizedThreadStart(
+                    Util.googleAnalytics)).Start("LogOn");
         }
     }
 }

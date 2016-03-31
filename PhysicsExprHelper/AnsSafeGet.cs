@@ -52,6 +52,9 @@ namespace PhysicsExprHelper
 
         private void AnsSafeGet_Load(object sender, EventArgs e)
         {
+            new System.Threading.Thread(
+                new System.Threading.ParameterizedThreadStart(
+                    Util.googleAnalytics)).Start("AnsSafeGet");
             Boolean status = download("http://tsingedu.com/anslist/index.json", "index.json");
             if (status)
             {

@@ -14,69 +14,53 @@ using System.Xml;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
+using System.Threading;
 
 namespace PhysicsExprHelper
 {
     public partial class MainForm : Form
     {
+        public static String updatePath {get; private set; }
+
         public string RegexStr { get; private set; }
 
         public String user { get; set; }
         public Boolean status { get; set; }
         public Boolean check { get; set; }
 
-        public int version { get;}
+        public static int version { get; set;}
 
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //Interop.UserSystem.logoutUser(user);
+            updatePath = "http://tsingedu.com/update/update.json";
+
             user = String.Empty;
             status = false;
             check = false;
             setStatus(check);
-            version = 3;
-            (new PhysicsExprHelper.Interop.UserSystem()).googleAnalytics("Main", version.ToString());
-            checkUpdate();
-        }
-
-        private Boolean download(String url,String name)
-        {
-            System.Net.WebClient myWebClient = new System.Net.WebClient();
-            try
+            version = 4;
+            new Thread(new ParameterizedThreadStart(Util.googleAnalytics)).Start("Main");
+            //PhysicsExprHelper.Interop.UserSystem.googleAnalytics("Main", version.ToString());
+            if (Util.checkUpdate())
             {
-                myWebClient.DownloadFile(url, name);
+                Close();
             }
-            catch (Exception e)
-            {
-                return false;
-            }
-            return true;
-            
         }
 
-        private void setStatus(Boolean b)
-        {
-            this.btnGetAns.Enabled = b;
-            this.btnGetPaper.Enabled = b;
-            this.btnGetPaperContent.Enabled = b;
-            this.btnGetSubmitted.Enabled = b;
-            this.btnStudyBug.Enabled = b;
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Interop.UserSystem.logoutUser(user);
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             LogOnForm FormLogin = new LogOnForm(this);
             FormLogin.Show();
             this.Visible = false;
+
         }
-        
+        /*
         private void btnGetPaper_Click(object sender, EventArgs e)
         {
             String paperID = Microsoft.VisualBasic.Interaction.InputBox("试卷编号：", "蛤蛤，你想看哪张卷子？");
@@ -84,7 +68,7 @@ namespace PhysicsExprHelper
             paper = paper.Replace("\\r\\n", String.Empty).Replace("\"", String.Empty);
             tbLog.AppendText(paper);
         }
-
+        */
         private void btnGetAns_Click(object sender, EventArgs e)
         {
             String paperID = Microsoft.VisualBasic.Interaction.InputBox("试卷编号：", "蛤蛤，你想看哪张卷子答案？");
@@ -100,7 +84,7 @@ namespace PhysicsExprHelper
             Match mat = Regex.Match(text, @"<PaperName>(.+?)</PaperName>");
             tbLog.AppendText(mat.Groups[1].Value + "答卷内容：\n");
 
-            string pat = @"<StudentAnswer>(.+?)</StudentAnswer>";
+            string pat = @"<StdAnswer>(.+?)</StdAnswer>";
             Regex r = new Regex(pat, RegexOptions.IgnoreCase);
             Match m = r.Match(text);
             int matchCount = 0;
@@ -121,15 +105,6 @@ namespace PhysicsExprHelper
             }
         }
 
-        public void Write(string text,string name)
-        {
-            FileStream fs = new FileStream(name, FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-            sw.Write(text);
-            sw.Close();
-            fs.Close();
-        }
-        
         private void btnGetExamScore_Click(object sender, EventArgs e)
         {
             if (status == false)
@@ -159,7 +134,7 @@ namespace PhysicsExprHelper
                 }
             }
             status = true;
-            setStatus(status);
+            
         }
 
         private void btnGetPaperContent_Click(object sender, EventArgs e)
@@ -260,7 +235,7 @@ namespace PhysicsExprHelper
 
         private void menuAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("科大奥锐实验教学系统信息提取工具\n使用软件所造成的一切后果由用户承担\n请酌情使用\nGPL协议","关于");
+            MessageBox.Show("科大奥锐实验教学系统信息提取工具（Build:"+MainForm.version.ToString()+")\n使用软件所造成的一切后果由用户承担\n请酌情使用\nGPL协议","关于");
         }
 
         private void menuBug_Click(object sender, EventArgs e)
@@ -276,86 +251,66 @@ namespace PhysicsExprHelper
 
         private void menuUpdate_Click(object sender, EventArgs e)
         {
-            if(checkUpdate())
+            if(Util.checkUpdate())
             {
                 MessageBox.Show("已经是最新版本");
             }
-        }
-
-        private Boolean checkUpdate()
-        {
-            Boolean status = download("http://tsingedu.com/update/update.json", "update.json");
-            if (status)
+            else
             {
-                JObject info = readJson("update.json");
-                if (info == null)
-                {
-                    return false;;
-                }
-                if (Int32.Parse(info["version"].ToString()) > this.version)
-                {
-                    MessageBox.Show(info["LatestVersion"].ToString() + ":" + info["What's New"].ToString(), "发现新版本，即将更新");
-                    System.Diagnostics.Process.Start(System.Environment.CurrentDirectory + @"\update\Update.exe");
-                    Close();
-                }
-
+                Close();
             }
-            return true;
         }
 
-        private JObject readJson(string path)
-        {
-            StreamReader sr = new StreamReader(path, Encoding.UTF8);
-            try
-            {
-                String line = sr.ReadLine();
-                sr.Close();
-                File.Delete(path);
-                JObject jreq = JObject.Parse(line);
-                return jreq;
 
-            }catch(Exception e)
-            {
-                sr.Close();
-                return null;
-            }
-            
-        }
-
-        public void googleAnalytics(string view)
-        {
-            var request = (HttpWebRequest)WebRequest.Create("http://www.google-analytics.com/collect");
-            
-            var postData = @"v=1";
-            postData += @"&tid=UA-75748514-1";
-            postData += @"&cid="+ System.Guid.NewGuid().ToString();
-            postData += @"&t=event";
-            postData += @"&an=PEST";
-            postData += @"&av=" + this.version.ToString();
-            postData += @"&aid=SUSTC";
-            postData += @"&cd="+view;
-
-            var data = Encoding.ASCII.GetBytes(postData);
-
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = data.Length;
-
-            request.UserAgent = @"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Win64; x64; Trident/6.0)";
-
-            using (var stream = request.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }
-
-            var response = (HttpWebResponse)request.GetResponse();
-
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-        }
+        
 
         private void btnGetAnsFromGitHub_Click(object sender, EventArgs e)
         {
             (new AnsSafeGet()).Show();
+        }
+
+        private void btnDanger_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("增强模式仍然在测试中，可能带来不可预料的后果\r\n确认继续么？","Warning!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                if (MessageBox.Show("真的确认继续么？", "Warning x2", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    if (MessageBox.Show("既然你确认了，万一将来报道出了偏差，就是你的错", "Warning x3", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        (new AdvancedMode()).Show();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+            
+        }
+
+        public void setStatus(Boolean status)
+        {
+            this.btnGetExamScore.Enabled = status;
+            this.btnGetAns.Enabled = status;
+            //this.btnGetPaper.Enabled = status;
+            this.btnGetPaperContent.Enabled = status;
+            this.btnGetSubmitted.Enabled = status;
+            this.btnStudyBug.Enabled = status;
+            //this.btnDanger.Enabled = status;
+
+        }
+
+        public void disableLogin()
+        {
+            btnLogin.Enabled = false;
         }
     }
 }
