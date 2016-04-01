@@ -18,22 +18,35 @@ namespace PhysicsExprHelper
 
         private void button1_Click(object sender, EventArgs e)
         {
+            listBox.Items.Clear();
             for (int i = 1; i < 1000; i++)
             {
+                
                 Interop.BizService.SvcResponse resp;
-                resp = Interop.UserSystem.isUserOnline("11310" + i.ToString("D3", System.Globalization.CultureInfo.InvariantCulture), true);
+                resp = Interop.UserSystem.isUserOnline("11510" + i.ToString("D3", System.Globalization.CultureInfo.InvariantCulture), true);
                 if ((resp.DataString == "1"))
                 {
                     Interop.BizService.SvcResponse user;
-                    user = Interop.ExamSystem.findExamScoreByStudentIDNew("11310" + i.ToString("D3"));
+                    user = Interop.ExamSystem.findExamScoreByStudentIDNew("11510" + i.ToString("D3"));
 
                     if (user.DataString != "[]")
                     {
                         Interop.ExamScoreEntry[] userdata = Newtonsoft.Json.JsonConvert.DeserializeObject<Interop.ExamScoreEntry[]>(user.DataString);
-                        listView1.Items.Add(new ListViewItem(userdata[0].StudentName));
+                        //listView1.Items.Add(new ListViewItem(userdata[0].StudentName));
+                        //listBox.Items.Add(userdata[0].StudentID+userdata[0].StudentName + ":最新实验" + userdata[0].ExamName);
+                        listBox.Items.Add(userdata[0].StudentName);
                     }
                 }
+                progressBar.Value = (int)((double)i / 100.0);
             }
+            progressBar.Value = 100;
+        }
+
+        private void StudyBug_Load(object sender, EventArgs e)
+        {
+            new System.Threading.Thread(
+                new System.Threading.ParameterizedThreadStart(
+                    Util.googleAnalytics)).Start("Studybug");
         }
     }
 }

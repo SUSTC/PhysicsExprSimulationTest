@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,17 +13,58 @@ namespace PhysicsExprHelper
 {
     public partial class LogOnForm : Form
     {
-        public LogOnForm()
+        public String userid { get; private set; }
+        public Boolean status { get; private set; }
+        public MainForm FormMain { get; private set; }
+        public LogOnForm(MainForm _Form)
         {
+            FormMain = _Form;
+            status = false;
             InitializeComponent();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            PhysicsExprHelper.Interop.UserSystem.interfaceLogin(txtUser.Text, txtPass.Text);
-            this.Close();
+            if (txtUser.Text == "")
+            {
+                MessageBox.Show("噫！你现在不输入用户名，将来报道出了偏差怎么办？");
+                return;
+            }
+            if (txtPass.Text == "")
+            {
+                MessageBox.Show("噫！你现在不输入密码，将来报道出了偏差怎么办？");
+                return;
+            }
+            Interop.BizService.SvcResponse res = PhysicsExprHelper.Interop.UserSystem.interfaceLogin(txtUser.Text, txtPass.Text);
+            JObject jreq = JObject.Parse(res.DataString);
+            //MessageBox.Show(res.DataString);
+            if (jreq["IsSeccess"].ToString() =="0")
+            {
+                MessageBox.Show("可以搞个大新闻了","Excited");
+                userid = txtUser.Text;
+                status = true;
+                FormMain.user = userid;
+                FormMain.status = status;
+                FormMain.Visible = true;
+                FormMain.Text = FormMain.Text + "  " + jreq["SchoolName"].ToString() + "  " + txtUser.Text;
+                FormMain.disableLogin();
+                FormMain.setStatus(status);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("一定是你报道的不对","我怀疑你是香港记者");
+                txtUser.Text = String.Empty;
+                txtPass.Text = String.Empty;
+            }
+
         }
 
-
+        private void LogOnForm_Load(object sender, EventArgs e)
+        {
+            new System.Threading.Thread(
+                new System.Threading.ParameterizedThreadStart(
+                    Util.googleAnalytics)).Start("LogOn");
+        }
     }
 }
