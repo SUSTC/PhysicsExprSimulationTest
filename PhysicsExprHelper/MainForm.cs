@@ -24,33 +24,121 @@ namespace PhysicsExprHelper
 
         public string RegexStr { get; private set; }
 
-        public String user { get; set; }
-        public Boolean status { get; set; }
-        public Boolean check { get; set; }
+        public static String user { get; set; }
+        public static Boolean status { get; set; }
+        public static Boolean check { get; set; }
 
         public static int version { get; set;}
 
         public MainForm()
         {
             InitializeComponent();
+
+            updatePath = "http://tsingedu.com/update/update.json";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             //Interop.UserSystem.logoutUser(user);
-            updatePath = "http://tsingedu.com/update/update.json";
 
-            user = String.Empty;
+            //user = String.Empty;
+            user = null;
             status = false;
             check = false;
             setStatus(check);
-            version = 4;
+            version = 5;
             new Thread(new ParameterizedThreadStart(Util.googleAnalytics)).Start("Main");
-            //PhysicsExprHelper.Interop.UserSystem.googleAnalytics("Main", version.ToString());
-            if (Util.checkUpdate())
-            {
-                Close();
+            checkUpdate();
+        }
+
+        private void AdvancedFininishExam()
+        {
+            try {
+                String undoExam = PhysicsExprHelper.Interop.ExamSystem.FindUndoExamByStudentID(MainForm.user).DataString;
+                JArray undoInfo = (JArray)JsonConvert.DeserializeObject(undoExam);
+                if (undoInfo == null)
+                {
+                    return;
+                }
+
+                String studentJson = PhysicsExprHelper.Interop.ExamSystem.FindStudentInfoByExamIDAndStudentID(undoInfo[0]["ExamID"].ToString(), MainForm.user).DataString;
+
+                JObject studentInfo = JObject.Parse(studentJson);
+                String origin = PhysicsExprHelper.Interop.ExamSystem.findPaperContentByPaperID(undoInfo[0]["UsePapers"].ToString()).DataString;
+                String text = origin.Replace("\\r\\n", "\n").Replace("\"<", "<").Replace(">\"", ">").Replace("\\\"", "\"");
+
+                XmlDocument paperXML = new XmlDocument();
+                paperXML.LoadXml(text);
+
+                String FullScore = null;
+
+                XmlNodeList Titles = paperXML.SelectSingleNode("/Paper/Title").ChildNodes;
+                foreach (XmlNode title in Titles)
+                {
+                    XmlElement tElement = (XmlElement)title;
+                    if (tElement.Name == "FullScore")
+                    {
+                        FullScore = tElement.InnerText;
+                    }
+                }
+                XmlNode edit = paperXML.SelectSingleNode("/Paper/Content");
+                XmlNode father = paperXML.SelectSingleNode("/Paper/Content");
+                XmlNodeList Questions = father.ChildNodes;
+
+                foreach (XmlNode questions in Questions)
+                {
+                    XmlElement qElement = (XmlElement)questions;
+                    if (qElement.GetAttribute("Type") != "OP")
+                    {
+                        String ans = String.Empty;
+                        String score = String.Empty;
+                        foreach (XmlNode field in qElement.ChildNodes)
+                        {
+                            XmlElement fElement = (XmlElement)field;
+                            if (fElement.Name == "StdAnswer")
+                            {
+                                ans = fElement.InnerText;
+                            }
+                            else if (fElement.Name == "TotalScore")
+                            {
+                                score = fElement.InnerText;
+                            }
+                            else if (fElement.Name == "StudentAnswer")
+                            {
+                                fElement.InnerText = ans;
+                            }
+                            else if (fElement.Name == "StudentScore")
+                            {
+                                fElement.InnerText = score;
+                            }
+                        }
+                    }
+                }
+                String update = Regex.Replace(paperXML.InnerXml, "<Question Type=\"OP\">.*</Question>", String.Empty);
+                
+                studentInfo["PaperContentXml"] = update;
+                studentInfo["GainPoint"] = FullScore;
+                studentInfo["GainShowPoint"] = FullScore;
+                studentInfo["IsSubmit"] = "true";
+
+                PhysicsExprHelper.Interop.ExamSystem.UpdateStudentPaperContent(studentInfo.ToString());
+                MessageBox.Show("已经完成实验预习：" + studentInfo["ExamName"].ToString(), "增强模式 beta");
+            } catch (Exception e) {
+                MessageBox.Show("完成实验预习出错！\n请重试", "增强模式 beta");
             }
+
+        }
+
+        public static String findStudentNameByStudentID(string studentID)
+        {
+            Interop.BizService.SvcResponse user = Interop.ExamSystem.findExamScoreByStudentIDNew(studentID);
+
+            if (user.DataString != "[]")
+            {
+                Interop.ExamScoreEntry[] userdata = Newtonsoft.Json.JsonConvert.DeserializeObject<Interop.ExamScoreEntry[]>(user.DataString);
+                return userdata[0].StudentName;
+            }
+            return null;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -229,7 +317,10 @@ namespace PhysicsExprHelper
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Interop.UserSystem.logoutUser(user);
+            if (user != null)
+            {
+                Interop.UserSystem.logoutUser(user);
+            }
             Close();
         }
 
@@ -245,24 +336,73 @@ namespace PhysicsExprHelper
 
         private void menuExit_Click(object sender, EventArgs e)
         {
-            Interop.UserSystem.logoutUser(user);
+            if(user != null)
+            {
+                Interop.UserSystem.logoutUser(user);
+            }
             Close();
         }
 
         private void menuUpdate_Click(object sender, EventArgs e)
         {
-            if(Util.checkUpdate())
+            checkUpdate();
+            MessageBox.Show("已经是最新版本");
+        }
+
+        public void checkUpdate()
+        {
+            Boolean status = download(MainForm.updatePath, "update.json");
+            if (status)
             {
-                MessageBox.Show("已经是最新版本");
+                JObject info = readJson("update.json");
+                if (info == null)
+                {
+                    return;
+                }
+                if (Int32.Parse(info["version"].ToString()) > MainForm.version)
+                {
+                    MessageBox.Show(info["LatestVersion"].ToString() + ":" + info["What's New"].ToString(), "发现新版本，即将更新");
+                    System.Diagnostics.Process.Start(System.Environment.CurrentDirectory + @"\update\Update.exe");
+                    Close();
+                }
+
             }
-            else
+
+        }
+
+        public static Boolean download(String url, String name)
+        {
+            System.Net.WebClient myWebClient = new System.Net.WebClient();
+            try
             {
-                Close();
+                myWebClient.DownloadFile(url, name);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
 
 
-        
+        public static JObject readJson(string path)
+        {
+            try
+            {
+                StreamReader sr = new StreamReader(path, Encoding.UTF8);
+                String line = sr.ReadLine();
+                sr.Close();
+                File.Delete(path);
+                JObject jreq = JObject.Parse(line);
+                return jreq;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
 
         private void btnGetAnsFromGitHub_Click(object sender, EventArgs e)
         {
@@ -277,7 +417,8 @@ namespace PhysicsExprHelper
                 {
                     if (MessageBox.Show("既然你确认了，万一将来报道出了偏差，就是你的错", "Warning x3", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
-                        (new AdvancedMode()).Show();
+                        //(new AdvancedMode()).Show();
+                        AdvancedFininishExam();
                     }
                     else
                     {
@@ -286,7 +427,7 @@ namespace PhysicsExprHelper
                 }
                 else
                 {
-                    return;
+                    (new AdvancedMode()).Show();
                 }
             }
             else
@@ -304,7 +445,7 @@ namespace PhysicsExprHelper
             this.btnGetPaperContent.Enabled = status;
             this.btnGetSubmitted.Enabled = status;
             this.btnStudyBug.Enabled = status;
-            //this.btnDanger.Enabled = status;
+            this.btnDanger.Enabled = status;
 
         }
 

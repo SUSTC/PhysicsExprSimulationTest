@@ -15,10 +15,10 @@ namespace PhysicsExprHelper
     {
         public String userid { get; private set; }
         public Boolean status { get; private set; }
-        public MainForm FormMain { get; private set; }
+        public MainForm MainForm { get; private set; }
         public LogOnForm(MainForm _Form)
         {
-            FormMain = _Form;
+            MainForm = _Form;
             status = false;
             InitializeComponent();
         }
@@ -43,12 +43,12 @@ namespace PhysicsExprHelper
                 MessageBox.Show("可以搞个大新闻了","Excited");
                 userid = txtUser.Text;
                 status = true;
-                FormMain.user = userid;
-                FormMain.status = status;
-                FormMain.Visible = true;
-                FormMain.Text = FormMain.Text + "  " + jreq["SchoolName"].ToString() + "  " + txtUser.Text;
-                FormMain.disableLogin();
-                FormMain.setStatus(status);
+                MainForm.user = userid;
+                MainForm.status = status;
+                MainForm.Visible = true;
+                MainForm.Text = MainForm.Text + "  " + jreq["SchoolName"].ToString() + "  " + txtUser.Text;
+                MainForm.disableLogin();
+                MainForm.setStatus(status);
                 this.Close();
             }
             else
