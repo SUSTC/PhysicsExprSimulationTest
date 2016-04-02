@@ -12,50 +12,7 @@ namespace PhysicsExprHelper
     public static class Util
     {
 
-        public static Boolean checkUpdate()
-        {
-            Boolean status = download(MainForm.updatePath, "update.json");
-            if (status)
-            {
-                JObject info = readJson("update.json");
-                if (info == null)
-                {
-                    return false;
-                }
-                if (Int32.Parse(info["version"].ToString()) > MainForm.version)
-                {
-                    MessageBox.Show(info["LatestVersion"].ToString() + ":" + info["What's New"].ToString(), "发现新版本，即将更新");
-                    System.Diagnostics.Process.Start(System.Environment.CurrentDirectory + @"\update\Update.exe");
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-
-            }
-            else
-            {
-                return false;
-            }
-            
-        }
-
-        public static Boolean download(String url, String name)
-        {
-            System.Net.WebClient myWebClient = new System.Net.WebClient();
-            try
-            {
-                myWebClient.DownloadFile(url, name);
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-            return true;
-
-        }
-
+        
         public static void googleAnalytics(object oview)
         {
             try
@@ -129,9 +86,9 @@ namespace PhysicsExprHelper
 
         public static JObject readJson(string path)
         {
-            StreamReader sr = new StreamReader(path, Encoding.UTF8);
             try
             {
+                StreamReader sr = new StreamReader(path, Encoding.UTF8);
                 String line = sr.ReadLine();
                 sr.Close();
                 File.Delete(path);
@@ -141,7 +98,6 @@ namespace PhysicsExprHelper
             }
             catch (Exception e)
             {
-                sr.Close();
                 return null;
             }
 

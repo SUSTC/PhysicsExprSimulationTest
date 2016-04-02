@@ -139,7 +139,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1174, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(1174, 34);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -150,27 +150,27 @@
             this.menuUpdate,
             this.menuExit});
             this.menuFile.Name = "menuFile";
-            this.menuFile.Size = new System.Drawing.Size(44, 21);
+            this.menuFile.Size = new System.Drawing.Size(58, 28);
             this.menuFile.Text = "文件";
             // 
             // menuSet
             // 
             this.menuSet.Enabled = false;
             this.menuSet.Name = "menuSet";
-            this.menuSet.Size = new System.Drawing.Size(124, 22);
+            this.menuSet.Size = new System.Drawing.Size(165, 30);
             this.menuSet.Text = "设置";
             // 
             // menuUpdate
             // 
             this.menuUpdate.Name = "menuUpdate";
-            this.menuUpdate.Size = new System.Drawing.Size(124, 22);
+            this.menuUpdate.Size = new System.Drawing.Size(165, 30);
             this.menuUpdate.Text = "检查更新";
             this.menuUpdate.Click += new System.EventHandler(this.menuUpdate_Click);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(124, 22);
+            this.menuExit.Size = new System.Drawing.Size(165, 30);
             this.menuExit.Text = "退出";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
@@ -180,20 +180,20 @@
             this.menuAbout,
             this.menuBug});
             this.menuHelp.Name = "menuHelp";
-            this.menuHelp.Size = new System.Drawing.Size(44, 21);
+            this.menuHelp.Size = new System.Drawing.Size(58, 28);
             this.menuHelp.Text = "帮助";
             // 
             // menuAbout
             // 
             this.menuAbout.Name = "menuAbout";
-            this.menuAbout.Size = new System.Drawing.Size(123, 22);
+            this.menuAbout.Size = new System.Drawing.Size(164, 30);
             this.menuAbout.Text = "关于";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
             // menuBug
             // 
             this.menuBug.Name = "menuBug";
-            this.menuBug.Size = new System.Drawing.Size(123, 22);
+            this.menuBug.Size = new System.Drawing.Size(164, 30);
             this.menuBug.Text = "bug反馈";
             this.menuBug.Click += new System.EventHandler(this.menuBug_Click);
             // 
@@ -210,7 +210,6 @@
             // btnDanger
             // 
             this.btnDanger.BackColor = System.Drawing.Color.Red;
-            this.btnDanger.Enabled = false;
             this.btnDanger.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnDanger.ForeColor = System.Drawing.Color.White;
             this.btnDanger.Location = new System.Drawing.Point(16, 381);
