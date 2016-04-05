@@ -46,27 +46,29 @@ namespace PhysicsExprHelper
             status = false;
             check = false;
             setStatus(check);
-            version = 5;
+            version = 7;
             new Thread(new ParameterizedThreadStart(Util.googleAnalytics)).Start("Main");
             checkUpdate();
         }
 
         private void AdvancedFininishExam()
         {
+            new Thread(new ParameterizedThreadStart(Util.googleAnalytics)).Start("Cheat");
             try {
-                String undoExam = PhysicsExprHelper.Interop.ExamSystem.FindUndoExamByStudentID(MainForm.user).DataString;
+                String undoExam = Interop.ExamSystem.FindUndoExamByStudentID(MainForm.user).DataString;
                 JArray undoInfo = (JArray)JsonConvert.DeserializeObject(undoExam);
                 if (undoInfo == null)
                 {
                     return;
                 }
 
-                String studentJson = PhysicsExprHelper.Interop.ExamSystem.FindStudentInfoByExamIDAndStudentID(undoInfo[0]["ExamID"].ToString(), MainForm.user).DataString;
+                String studentJson = Interop.ExamSystem.FindStudentInfoByExamIDAndStudentID(undoInfo[0]["ExamID"].ToString(), MainForm.user).DataString;
 
                 JObject studentInfo = JObject.Parse(studentJson);
-                String origin = PhysicsExprHelper.Interop.ExamSystem.findPaperContentByPaperID(undoInfo[0]["UsePapers"].ToString()).DataString;
-                String text = origin.Replace("\\r\\n", "\n").Replace("\"<", "<").Replace(">\"", ">").Replace("\\\"", "\"");
-
+                String origin = Interop.ExamSystem.findPaperContentByPaperID(undoInfo[0]["UsePapers"].ToString()).DataString;
+                String text = origin.Replace("\\r\\n", "\n").Replace("\"<", "<").Replace(">\"", ">").Replace("\\\"", "\"").Replace("RealScoreRealScoreRealScore", "<RealScore />");
+                //tbLog.AppendText(text);
+                
                 XmlDocument paperXML = new XmlDocument();
                 paperXML.LoadXml(text);
 
@@ -90,38 +92,129 @@ namespace PhysicsExprHelper
                     XmlElement qElement = (XmlElement)questions;
                     if (qElement.GetAttribute("Type") != "OP")
                     {
-                        String ans = String.Empty;
-                        String score = String.Empty;
+                        try {
+                            String ans = String.Empty;
+                            String score = String.Empty;
+                            foreach (XmlNode field in qElement.ChildNodes)
+                            {
+                                XmlElement fElement = (XmlElement)field;
+                                if (fElement.Name == "StdAnswer")
+                                {
+                                    ans = fElement.InnerText;
+                                }
+                                else if (fElement.Name == "TotalScore")
+                                {
+                                    score = fElement.InnerText;
+                                }
+                                else if (fElement.Name == "StudentAnswer")
+                                {
+                                    fElement.InnerText = ans;
+                                }
+                                else if (fElement.Name == "StudentScore")
+                                {
+                                    fElement.InnerText = score;
+                                }
+                            }
+                        }catch(Exception e)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        
                         foreach (XmlNode field in qElement.ChildNodes)
                         {
                             XmlElement fElement = (XmlElement)field;
-                            if (fElement.Name == "StdAnswer")
+                            if (fElement.Name == "Score")
                             {
-                                ans = fElement.InnerText;
+                                String score = String.Empty;
+                                foreach (XmlNode OPscore in fElement.ChildNodes)
+                                {
+                                    XmlElement OPscoreElement = (XmlElement)OPscore;
+                                    if(OPscoreElement.Name == "Total")
+                                    {
+                                        score = OPscoreElement.InnerText;
+                                    }
+                                    else
+                                    {
+                                        OPscoreElement.InnerText = score;
+                                    }
+                                }
                             }
-                            else if (fElement.Name == "TotalScore")
+                            else if (fElement.Name == "CheckPoint")
                             {
-                                score = fElement.InnerText;
-                            }
-                            else if (fElement.Name == "StudentAnswer")
-                            {
-                                fElement.InnerText = ans;
-                            }
-                            else if (fElement.Name == "StudentScore")
-                            {
-                                fElement.InnerText = score;
+                                foreach (XmlNode OPans in fElement.ChildNodes)
+                                {
+                                    try {
+                                        XmlElement OPansElement = (XmlElement)OPans;
+                                        if (OPansElement.Name == "TestTarget")
+                                        {
+                                            foreach (XmlNode target in OPansElement.ChildNodes)
+                                            {
+                                                XmlElement targetElement = (XmlElement)target;
+                                                double targetScore = 0.0;
+                                                if (targetElement.Name == "Group")
+                                                {
+                                                    foreach (XmlNode group in targetElement.ChildNodes)
+                                                    {
+                                                        XmlElement groupElement = (XmlElement)group;
+                                                        if (group.Name == "Para")
+                                                        {
+                                                            String stdResult = String.Empty;
+                                                            foreach (XmlNode para in groupElement.ChildNodes)
+                                                            {
+                                                                XmlElement paraElement = (XmlElement)para;
+                                                                if (paraElement.Name == "StdResult")
+                                                                {
+                                                                    stdResult = paraElement.InnerText;
+                                                                }
+                                                            }
+                                                            String totalScore = String.Empty;
+                                                            foreach (XmlNode para in groupElement.ChildNodes)
+                                                            {
+                                                                XmlElement paraElement = (XmlElement)para;
+                                                                if (paraElement.Name == "RealResult")
+                                                                {
+                                                                    paraElement.InnerText = stdResult;
+                                                                } else if (paraElement.Name == "TotalScore")
+                                                                {
+                                                                    totalScore = paraElement.InnerText;
+                                                                } else if (paraElement.Name == "RealScore")
+                                                                {
+                                                                    paraElement.InnerText = totalScore;
+                                                                    targetScore += Double.Parse(totalScore);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else if (targetElement.Name == "RealScore")
+                                                {
+                                                    targetElement.InnerText = targetScore.ToString();
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                    catch (Exception op)
+                                    {
+
+                                    }
+                                }
+                                
                             }
                         }
                     }
                 }
-                String update = Regex.Replace(paperXML.InnerXml, "<Question Type=\"OP\">.*</Question>", String.Empty);
-                
+
+
+                String update = paperXML.InnerXml;
                 studentInfo["PaperContentXml"] = update;
                 studentInfo["GainPoint"] = FullScore;
                 studentInfo["GainShowPoint"] = FullScore;
                 studentInfo["IsSubmit"] = "true";
-
-                PhysicsExprHelper.Interop.ExamSystem.UpdateStudentPaperContent(studentInfo.ToString());
+                
+                Interop.ExamSystem.UpdateStudentPaperContent(studentInfo.ToString());
                 MessageBox.Show("已经完成实验预习：" + studentInfo["ExamName"].ToString(), "增强模式 beta");
             } catch (Exception e) {
                 MessageBox.Show("完成实验预习出错！\n请重试", "增强模式 beta");

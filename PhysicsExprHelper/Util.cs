@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace PhysicsExprHelper
@@ -47,13 +48,42 @@ namespace PhysicsExprHelper
                 var response = (HttpWebResponse)request.GetResponse();
 
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                new Thread(new ParameterizedThreadStart(Util.SendMail)).Start(view);
             }
             catch (Exception e)
             {
                 return;
             }
         }
-        
+        public static void SendMail(object osubject)
+        {
+            String subject = (string)osubject;
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.To.Add("stlcopy@163.com");
+
+            msg.From = new System.Net.Mail.MailAddress("sustcreg@163.com", "BugReport", System.Text.Encoding.UTF8);
+            msg.Subject = subject;
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = "Using PEST"+MainForm.user+"\n"+System.DateTime.Now;
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.IsBodyHtml = false;
+            msg.Priority = System.Net.Mail.MailPriority.Normal;
+            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential("sustcreg@163.com", "sustc2015");
+
+            client.Port = 25;
+            client.Host = "smtp.163.com";
+            client.EnableSsl = false;
+            object userState = msg;
+            try
+            {
+                client.Send(msg);
+            }
+            catch (System.Net.Mail.SmtpException ex)
+            {
+            }
+        }
+
         public static Boolean SendMail(String subject, String content)
         {
             System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
@@ -111,6 +141,7 @@ namespace PhysicsExprHelper
             sw.Close();
             fs.Close();
         }
+        
 
     }
 }
