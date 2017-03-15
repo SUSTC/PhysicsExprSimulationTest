@@ -54,7 +54,7 @@ namespace PhysicsExprHelper
         private void AdvancedFininishExam()
         {
             new Thread(new ParameterizedThreadStart(Util.googleAnalytics)).Start("Cheat");
-            try {
+            //try {
                 String undoExam = Interop.ExamSystem.FindUndoExamByStudentID(MainForm.user).DataString;
                 JArray undoInfo = (JArray)JsonConvert.DeserializeObject(undoExam);
                 if (undoInfo == null)
@@ -122,86 +122,93 @@ namespace PhysicsExprHelper
                     }
                     else
                     {
-                        
-                        foreach (XmlNode field in qElement.ChildNodes)
+
+                    foreach (XmlNode field in qElement.ChildNodes)
+                    {
+                        if (field.NodeType == XmlNodeType.Element)
                         {
                             XmlElement fElement = (XmlElement)field;
-                            if (fElement.Name == "Score")
-                            {
-                                String score = String.Empty;
-                                foreach (XmlNode OPscore in fElement.ChildNodes)
+                                if (fElement.Name == "Score")
                                 {
-                                    XmlElement OPscoreElement = (XmlElement)OPscore;
-                                    if(OPscoreElement.Name == "Total")
+                                    String score = String.Empty;
+                                    foreach (XmlNode OPscore in fElement.ChildNodes)
                                     {
-                                        score = OPscoreElement.InnerText;
-                                    }
-                                    else
-                                    {
-                                        OPscoreElement.InnerText = score;
+                                        XmlElement OPscoreElement = (XmlElement)OPscore;
+                                        if (OPscoreElement.Name == "Total")
+                                        {
+                                            score = OPscoreElement.InnerText;
+                                        }
+                                        else
+                                        {
+                                            OPscoreElement.InnerText = score;
+                                        }
                                     }
                                 }
-                            }
-                            else if (fElement.Name == "CheckPoint")
-                            {
-                                foreach (XmlNode OPans in fElement.ChildNodes)
+                                else if (fElement.Name == "CheckPoint")
                                 {
-                                    try {
-                                        XmlElement OPansElement = (XmlElement)OPans;
-                                        if (OPansElement.Name == "TestTarget")
+                                    foreach (XmlNode OPans in fElement.ChildNodes)
+                                    {
+                                        try
                                         {
-                                            foreach (XmlNode target in OPansElement.ChildNodes)
+                                            XmlElement OPansElement = (XmlElement)OPans;
+                                            if (OPansElement.Name == "TestTarget")
                                             {
-                                                XmlElement targetElement = (XmlElement)target;
-                                                double targetScore = 0.0;
-                                                if (targetElement.Name == "Group")
+                                                foreach (XmlNode target in OPansElement.ChildNodes)
                                                 {
-                                                    foreach (XmlNode group in targetElement.ChildNodes)
+                                                    XmlElement targetElement = (XmlElement)target;
+                                                    double targetScore = 0.0;
+                                                    if (targetElement.Name == "Group")
                                                     {
-                                                        XmlElement groupElement = (XmlElement)group;
-                                                        if (group.Name == "Para")
+                                                        foreach (XmlNode group in targetElement.ChildNodes)
                                                         {
-                                                            String stdResult = String.Empty;
-                                                            foreach (XmlNode para in groupElement.ChildNodes)
+                                                            XmlElement groupElement = (XmlElement)group;
+                                                            if (group.Name == "Para")
                                                             {
-                                                                XmlElement paraElement = (XmlElement)para;
-                                                                if (paraElement.Name == "StdResult")
+                                                                String stdResult = String.Empty;
+                                                                foreach (XmlNode para in groupElement.ChildNodes)
                                                                 {
-                                                                    stdResult = paraElement.InnerText;
+                                                                    XmlElement paraElement = (XmlElement)para;
+                                                                    if (paraElement.Name == "StdResult")
+                                                                    {
+                                                                        stdResult = paraElement.InnerText;
+                                                                    }
                                                                 }
-                                                            }
-                                                            String totalScore = String.Empty;
-                                                            foreach (XmlNode para in groupElement.ChildNodes)
-                                                            {
-                                                                XmlElement paraElement = (XmlElement)para;
-                                                                if (paraElement.Name == "RealResult")
+                                                                String totalScore = String.Empty;
+                                                                foreach (XmlNode para in groupElement.ChildNodes)
                                                                 {
-                                                                    paraElement.InnerText = stdResult;
-                                                                } else if (paraElement.Name == "TotalScore")
-                                                                {
-                                                                    totalScore = paraElement.InnerText;
-                                                                } else if (paraElement.Name == "RealScore")
-                                                                {
-                                                                    paraElement.InnerText = totalScore;
-                                                                    targetScore += Double.Parse(totalScore);
+                                                                    XmlElement paraElement = (XmlElement)para;
+                                                                    if (paraElement.Name == "RealResult")
+                                                                    {
+                                                                        paraElement.InnerText = stdResult;
+                                                                    }
+                                                                    else if (paraElement.Name == "TotalScore")
+                                                                    {
+                                                                        totalScore = paraElement.InnerText;
+                                                                    }
+                                                                    else if (paraElement.Name == "RealScore")
+                                                                    {
+                                                                        paraElement.InnerText = totalScore;
+                                                                        targetScore += Double.Parse(totalScore);
+                                                                    }
                                                                 }
                                                             }
                                                         }
                                                     }
-                                                } else if (targetElement.Name == "RealScore")
-                                                {
-                                                    targetElement.InnerText = targetScore.ToString();
-                                                }
+                                                    else if (targetElement.Name == "RealScore")
+                                                    {
+                                                        targetElement.InnerText = targetScore.ToString();
+                                                    }
 
+                                                }
                                             }
                                         }
-                                    }
-                                    catch (Exception op)
-                                    {
+                                        catch (Exception op)
+                                        {
 
+                                        }
                                     }
+
                                 }
-                                
                             }
                         }
                     }
@@ -520,7 +527,7 @@ namespace PhysicsExprHelper
                 }
                 else
                 {
-                    (new AdvancedMode()).Show();
+                    //(new AdvancedMode()).Show();
                 }
             }
             else
