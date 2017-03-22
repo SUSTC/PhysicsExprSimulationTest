@@ -57,7 +57,7 @@ namespace update
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.Visible = true;
-            Boolean status = download("http://tsingedu.com/update/update.json", "update.json");
+            Boolean status = download("https://update.sustc.us/update.json", "update.json");
             if (status)
             {
                 JObject info = readJson("update.json");
@@ -66,7 +66,7 @@ namespace update
                     MessageBox.Show("更新发生错误！程序即将退出", "ERROR");
                     Close();
                 }
-                status = download("http://tsingedu.com/update/" + info["LatestVersion"].ToString() + ".json", "update.json");
+                status = download("https://update.sustc.us/update/" + info["LatestVersion"].ToString() + ".json", "update.json");
                 if (status)
                 {
                     StreamReader sr = new StreamReader("update.json", Encoding.UTF8);
