@@ -202,6 +202,7 @@ namespace PhysicsExprHelper
                             if (field.NodeType == XmlNodeType.Element)
                             {
                                 XmlElement fElement = (XmlElement)field;
+
                                 if (fElement.Name == "Score")
                                 {
                                     String score = String.Empty;
@@ -281,6 +282,7 @@ namespace PhysicsExprHelper
 
                                         }
                                     }
+
                                 }
                             }
                         }
