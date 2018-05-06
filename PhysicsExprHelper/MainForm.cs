@@ -302,7 +302,7 @@ namespace PhysicsExprHelper
 
         public static String findStudentNameByStudentID(string studentID)
         {
-            Interop.BizService.SvcResponse user = Interop.ExamSystem.findExamScoreByStudentIDNew(studentID);
+            Interop.BizService.SvcResponse user = Interop.ExamSystem.FindExamScoreByStudentIDNew(studentID);
 
             if (user.DataString != "[]")
             {
@@ -372,7 +372,7 @@ namespace PhysicsExprHelper
                 return;
             }
             String stuID = user;
-            String score = Interop.ExamSystem.findExamScoreByStudentIDNew(stuID).DataString;
+            String score = Interop.ExamSystem.FindExamScoreByStudentIDNew(stuID).DataString;
             JArray ja = (JArray)JsonConvert.DeserializeObject(score);
             if (ja == null)
             {
@@ -402,7 +402,7 @@ namespace PhysicsExprHelper
             String stuID = user;
             String examID = Microsoft.VisualBasic.Interaction.InputBox("考试编号：", "你要看哪次试卷？");
             String paperContent;
-            paperContent = Interop.ExamSystem.findPaperContent(examID, stuID).DataString;
+            paperContent = Interop.ExamSystem.FindPaperContent(examID, stuID).DataString;
             if (paperContent == null)
             {
                 return;
@@ -437,7 +437,7 @@ namespace PhysicsExprHelper
         private void btnGetSubmitted_Click(object sender, EventArgs e)
         {
             String examID = Microsoft.VisualBasic.Interaction.InputBox("考试编号：", "蛤蛤，你想看哪次的试卷？");
-            String studentList = Interop.ExamSystem.findSubmitStudentByExamID(examID).DataString;
+            String studentList = Interop.ExamSystem.FindSubmitStudentByExamID(examID).DataString;
 
             printJson(studentList, "ExamName", "StudentName", "GainPoint");
 

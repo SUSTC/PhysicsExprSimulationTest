@@ -35,7 +35,7 @@ namespace PhysicsExprHelper.Interop
             .DoRequest();
         }
 
-        public static BizService.SvcResponse findPaperContent(string examID, string studentID)
+        public static BizService.SvcResponse FindPaperContent(string examID, string studentID)
         {
             return (new Service("USTCORi.ExamSystem.BLL.BLLExamCritique", "FindPaperContent"))
             .Set("examID", examID)
@@ -43,7 +43,7 @@ namespace PhysicsExprHelper.Interop
             .DoRequest();
         }
 
-        public static BizService.SvcResponse findSubmitStudentByExamID(string examID)
+        public static BizService.SvcResponse FindSubmitStudentByExamID(string examID)
         {
             return (new Service("USTCORi.ExamSystem.BLL.BLLExamCritique", "FindSubmitStudentByExamID"))
             .Set("examID", examID)
