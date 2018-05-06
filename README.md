@@ -1,16 +1,8 @@
 PhysicsExprSimulationTest
 =========================
 
-# This project is deprecated. See https://github.com/lightsing/PESTest-NG.js for more info.
-这个项目已经不再维护。
-
 Test system for the USTCORi Physics Experiment Simulation System.
 科大奥锐实验教学系统信息提取工具
-
-# New Function
-
-* StudyBug: Find out that how many people is struggling on the experiment system :)
-* StudyBug（学霸）：看看有哪些小盆友在和你一同奋战
 
 # Functions
 

@@ -35,7 +35,7 @@ namespace PhysicsExprHelper
             {
                 return null;
             }
-            String origin = PhysicsExprHelper.Interop.ExamSystem.findPaperContentByPaperID(ja[0]["UsePapers"].ToString()).DataString;
+            String origin = PhysicsExprHelper.Interop.ExamSystem.GetExamStudentInfo(MainForm.user, ja[0]["ExamID"].ToString()).DataString;
             String text = origin.Replace("\\r\\n", "\n").Replace("\"<", "<").Replace(">\"", ">").Replace("\\\"","\"");
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(text);

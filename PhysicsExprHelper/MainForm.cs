@@ -91,9 +91,7 @@ namespace PhysicsExprHelper
             //this.btnGetPaper.Enabled = status;
             this.btnGetPaperContent.Enabled = status;
             this.btnGetSubmitted.Enabled = status;
-            this.btnStudyBug.Enabled = status;
             this.btnDanger.Enabled = status;
-
         }
 
         public void disableLogin()
@@ -119,13 +117,11 @@ namespace PhysicsExprHelper
             check = false;
             setStatus(check);
             version = 7;
-            new Thread(new ParameterizedThreadStart(Util.googleAnalytics)).Start("Main");
             checkUpdate();
         }
 
         private void AdvancedFininishExam()
         {
-            new Thread(new ParameterizedThreadStart(Util.googleAnalytics)).Start("Cheat");
             try
             {
                 String undoExam = Interop.ExamSystem.FindUndoExamByStudentID(MainForm.user).DataString;
@@ -138,7 +134,7 @@ namespace PhysicsExprHelper
                 String studentJson = Interop.ExamSystem.FindStudentInfoByExamIDAndStudentID(undoInfo[0]["ExamID"].ToString(), MainForm.user).DataString;
 
                 JObject studentInfo = JObject.Parse(studentJson);
-                String origin = Interop.ExamSystem.findPaperContentByPaperID(undoInfo[0]["UsePapers"].ToString()).DataString;
+                String origin = Interop.ExamSystem.GetExamStudentInfo(MainForm.user, undoInfo[0]["UsePapers"].ToString()).DataString;
                 String text = origin.Replace("\\r\\n", "\n").Replace("\"<", "<").Replace(">\"", ">").Replace("\\\"", "\"").Replace("RealScoreRealScoreRealScore", "<RealScore />");
                 //tbLog.AppendText(text);
 
@@ -334,14 +330,14 @@ namespace PhysicsExprHelper
         */
         private void btnGetAns_Click(object sender, EventArgs e)
         {
-            String paperID = Microsoft.VisualBasic.Interaction.InputBox("试卷编号：", "蛤蛤，你想看哪张卷子答案？");
-            if (paperID == "")
+            String examID = Microsoft.VisualBasic.Interaction.InputBox("试卷编号：", "蛤蛤，你想看哪场考试的答案？");
+            if (examID == "")
             {
-                MessageBox.Show("Naive,不知道先戳下查成绩看看试卷编号么？", "Too Young");
+                MessageBox.Show("Naive,不知道先戳下查成绩看看考试编号么？", "Too Young");
                 return;
             }
 
-            String text = Interop.ExamSystem.findPaperContentByPaperID(paperID).DataString;
+            String text = Interop.ExamSystem.GetExamStudentInfo(user, examID).DataString;
             text = text.Replace("\\r\\n", String.Empty).Replace("\"", String.Empty);
 
             Match mat = Regex.Match(text, @"<PaperName>(.+?)</PaperName>");
@@ -483,18 +479,12 @@ namespace PhysicsExprHelper
                 }
             }
         }
-
-        private void btnStudyBug_Click(object sender, EventArgs e)
-        {
-            (new StudyBug()).Show();
-        }
-
-
+        
         private void btnExit_Click(object sender, EventArgs e)
         {
             if (user != null)
             {
-                Interop.UserSystem.logoutUser(user);
+                Interop.UserSystem.LogoutUser(user);
             }
             Close();
         }
@@ -503,34 +493,17 @@ namespace PhysicsExprHelper
         {
             MessageBox.Show("科大奥锐实验教学系统信息提取工具（Build:" + MainForm.version.ToString() + ")\n使用软件所造成的一切后果由用户承担\n请酌情使用\nGPL协议", "关于");
         }
-
-        private void menuBug_Click(object sender, EventArgs e)
-        {
-            (new BugReportForm()).Show();
-        }
+        
 
         private void menuExit_Click(object sender, EventArgs e)
         {
             if (user != null)
             {
-                Interop.UserSystem.logoutUser(user);
+                Interop.UserSystem.LogoutUser(user);
             }
             Close();
         }
-
-        private void menuUpdate_Click(object sender, EventArgs e)
-        {
-            checkUpdate();
-            MessageBox.Show("已经是最新版本");
-        }
-
-
-
-        private void btnGetAnsFromGitHub_Click(object sender, EventArgs e)
-        {
-            (new AnsSafeGet()).Show();
-        }
-
+        
         private void btnDanger_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("增强模式仍然在测试中，可能带来不可预料的后果\r\n确认继续么？", "Warning!", MessageBoxButtons.OKCancel) == DialogResult.OK)

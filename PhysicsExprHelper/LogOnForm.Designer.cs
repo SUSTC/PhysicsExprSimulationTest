@@ -104,7 +104,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "开挂也要按照基本法！";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.LogOnForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

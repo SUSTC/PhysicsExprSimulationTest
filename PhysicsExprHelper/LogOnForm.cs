@@ -35,9 +35,9 @@ namespace PhysicsExprHelper
                 MessageBox.Show("噫！你现在不输入密码，将来报道出了偏差怎么办？");
                 return;
             }
-            Interop.BizService.SvcResponse res = PhysicsExprHelper.Interop.UserSystem.interfaceLogin(txtUser.Text, txtPass.Text);
+            Interop.BizService.SvcResponse res = PhysicsExprHelper.Interop.UserSystem.InterfaceLogin(txtUser.Text, txtPass.Text);
             JObject jreq = JObject.Parse(res.DataString);
-            //MessageBox.Show(res.DataString);
+            MessageBox.Show(res.DataString);
             if (jreq["IsSeccess"].ToString() =="0")
             {
                 MessageBox.Show("可以搞个大新闻了","Excited");
@@ -60,11 +60,6 @@ namespace PhysicsExprHelper
 
         }
 
-        private void LogOnForm_Load(object sender, EventArgs e)
-        {
-            new System.Threading.Thread(
-                new System.Threading.ParameterizedThreadStart(
-                    Util.googleAnalytics)).Start("LogOn");
-        }
+        
     }
 }
