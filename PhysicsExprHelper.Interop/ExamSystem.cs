@@ -28,7 +28,7 @@ namespace PhysicsExprHelper.Interop
             .DoRequest();
         }
 
-        public static BizService.SvcResponse findExamScoreByStudentIDNew(string studentID)
+        public static BizService.SvcResponse FindExamScoreByStudentIDNew(string studentID)
         {
             return (new Service("USTCORi.ExamSystem.BLL.BLLExamCritique", "FindExamScoreByStudentIDNew"))
             .Set("studentID", "\"" + studentID + "\"")
@@ -37,82 +37,26 @@ namespace PhysicsExprHelper.Interop
 
         public static BizService.SvcResponse findPaperContent(string examID, string studentID)
         {
-
-            BizService.BizServiceClient svcRef = new BizService.BizServiceClient();
-            BizService.SvcRequest req = new BizService.SvcRequest();
-            BizService.DoServiceRequest doSvcRequest;
-
-            req = new BizService.SvcRequest()
-            {
-                BizCode = "USTCORi.ExamSystem.BLL.BLLExamCritique",
-                EnableCache = false,
-                MethodName = "FindPaperContent"
-            };
-            req.Parameters = new Dictionary<string, object>();
-            req.Parameters.Add("studentID", "\"" + studentID + "\"");
-            req.Parameters.Add("examID", examID);
-            BizService.SvcResponse res;
-            doSvcRequest = new BizService.DoServiceRequest(req);
-
-            res = svcRef.DoService(doSvcRequest).DoServiceResult;
-
-
-
-            return res;
-
+            return (new Service("USTCORi.ExamSystem.BLL.BLLExamCritique", "FindPaperContent"))
+            .Set("examID", examID)
+            .Set("studentID", "\"" + studentID + "\"")
+            .DoRequest();
         }
 
         public static BizService.SvcResponse findSubmitStudentByExamID(string examID)
         {
-
-            BizService.BizServiceClient svcRef = new BizService.BizServiceClient();
-            BizService.SvcRequest req = new BizService.SvcRequest();
-            BizService.DoServiceRequest doSvcRequest;
-
-            req = new BizService.SvcRequest()
-            {
-                BizCode = "USTCORi.ExamSystem.BLL.BLLExamCritique",
-                EnableCache = false,
-                MethodName = "FindSubmitStudentByExamID"
-            };
-            req.Parameters = new Dictionary<string, object>();
-            req.Parameters.Add("examID", examID);
-            BizService.SvcResponse res;
-            doSvcRequest = new BizService.DoServiceRequest(req);
-
-            res = svcRef.DoService(doSvcRequest).DoServiceResult;
-
-
-
-            return res;
-
+            return (new Service("USTCORi.ExamSystem.BLL.BLLExamCritique", "FindSubmitStudentByExamID"))
+            .Set("examID", examID)
+            .DoRequest();
         }
 
 
-        public static BizService.SvcResponse FindStudentInfoByExamIDAndStudentID(string examID, string user)
+        public static BizService.SvcResponse FindStudentInfoByExamIDAndStudentID(string examID, string studentID)
         {
-
-            BizService.BizServiceClient svcRef = new BizService.BizServiceClient();
-            BizService.SvcRequest req = new BizService.SvcRequest();
-            BizService.DoServiceRequest doSvcRequest;
-
-            req = new BizService.SvcRequest()
-            {
-                BizCode = "USTCORi.ExamSystem.BLL.BLLExamArrage",
-                EnableCache = false,
-                MethodName = "FindStudentInfoByExamIDAndStudentID"
-            };
-            req.Parameters = new Dictionary<string, object>();
-            req.Parameters.Add("examID", examID);
-            req.Parameters.Add("studentID", "\"" + user + "\"");
-            BizService.SvcResponse res;
-            doSvcRequest = new BizService.DoServiceRequest(req);
-            res = svcRef.DoService(doSvcRequest).DoServiceResult;
-
-
-
-            return res;
-
+            return (new Service("USTCORi.ExamSystem.BLL.BLLExamArrage", "FindStudentInfoByExamIDAndStudentID"))
+            .Set("examID", examID)
+            .Set("studentID", "\"" + studentID + "\"")
+            .DoRequest();
         }
     }
 }
