@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PhysicsExprHelper.Interop
+﻿namespace PhysicsExprHelper.Interop
 {
     public class ExamScoreEntry
     {
