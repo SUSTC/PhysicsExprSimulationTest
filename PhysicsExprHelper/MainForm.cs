@@ -118,6 +118,7 @@ namespace PhysicsExprHelper
             setStatus(check);
             version = 7;
             checkUpdate();
+            (new OperationPanel()).Show();
         }
 
         private void AdvancedFininishExam()
