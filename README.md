@@ -32,3 +32,6 @@ Test system for the USTCORi Physics Experiment Simulation System.
 3. 点击GetPaperContent，输入你的学号与上一步中的ExamID
 4. Enjoy！
 
+# Attributions
+
+Dedicated to the memory of Prof. Jianqing Huo, whose passion and dedication to the education of experimental science will continue to inspire us forever.
